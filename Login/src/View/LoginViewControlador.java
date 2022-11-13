@@ -7,46 +7,48 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.Main;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class LoginViewControlador implements Initializable {
 	String user = "Nuevo";
 	String pass = "Nuevo";
 
+	private Stage stage;
+
 	@FXML
 	public ImageView insta;
-	
+
 	@FXML
 	public ImageView face;
-	
+
 	@FXML
 	public ImageView twet;
-	
+
 	@FXML
 	public ImageView fondo;
-	
+
 	@FXML
 	private Button validar;
-	
+
 	@FXML
 	private Button cancelar;
-	
+
 	@FXML
 	private TextField username;
-	
+
 	@FXML
 	private TextField password;
-
-	static Main mainApp;
 
 	@FXML
 	public void instagram() {
@@ -102,12 +104,7 @@ public class LoginViewControlador implements Initializable {
 		}
 	}
 
-	public void setMainApp(Main mainAp) {
-		mainApp = mainAp;
-
-	}
-
-	public void vaidarLogin() {
+	public void vaidarLogin() throws IOException {
 
 		System.out.println(username.getText() + " " + password.getText());
 
@@ -115,6 +112,16 @@ public class LoginViewControlador implements Initializable {
 			Alert alerta = new Alert(AlertType.CONFIRMATION);
 			alerta.setContentText("Bienvenido");
 			alerta.showAndWait();
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/PrinciapalView.fxml"));
+			Parent root = loader.load();
+			PrincipalViewControlador controler = loader.getController();
+			Scene scene = new Scene(root);
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			controler.init(stage, this);
+			stage.show();
+			this.stage.close();
 
 		} else {
 			Alert alerta = new Alert(AlertType.ERROR);
@@ -130,8 +137,17 @@ public class LoginViewControlador implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 
+	}
+
+	public void setStage(Stage primaryStage) {
+
+		stage = primaryStage;
+	}
+
+	public void show() {
+
+		stage.show();
 	}
 
 }

@@ -43,11 +43,12 @@ public class Main extends Application {
 
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
-			primaryStage.show();
+			
 
 			LoginViewControlador controlador = load.getController();
-			controlador.setMainApp(this);
-
+			controlador.setStage(primaryStage);
+			
+			primaryStage.show();
 		} catch (IOException e) {
 
 			e.printStackTrace();
