@@ -1,7 +1,11 @@
 package Controllers;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public class EmpleadosC {
@@ -18,7 +22,7 @@ public class EmpleadosC {
 	}
 
 	@FXML
-	void vistaEmpleados(MouseEvent event) {
+	void vistaEmpleados(MouseEvent event) throws IOException {
 
 	}
 

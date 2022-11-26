@@ -30,6 +30,10 @@ public class PrincipalC {
 	@FXML
 	private MenuButton menuMecanicos;
 
+	@FXML
+    private Button btnInicio;
+	
+	
 	public void init(Stage stage, LoginController loginController, String usuario, BorderPane border) throws IOException {
 		this.stage = stage;
 		this.controLogin = loginController;
@@ -48,8 +52,7 @@ public class PrincipalC {
 		
 	}
 	
-		@FXML
-	    private Button btnInicio;
+		
 
 	    @FXML
 	    void vistaInicio(MouseEvent event) throws IOException {
