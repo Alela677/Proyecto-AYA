@@ -24,7 +24,7 @@ public class StockC implements Initializable {
 	private ScrollPane scrollStock;
 
 	@FXML
-	private GridPane gridStock;
+	private GridPane gridStockVehiculo;
 
 	private List<Vehiculo> vehichulos = new ArrayList<Vehiculo>();
 
@@ -63,18 +63,18 @@ public class StockC implements Initializable {
 					fila++;
 				}
 
-				gridStock.add(root, columna, fila);
+				gridStockVehiculo.add(root, columna, fila);
 				columna++;
-				
-				GridPane.setMargin(root, new Insets(15));
-				
-				gridStock.minWidth(Region.USE_COMPUTED_SIZE);
-				gridStock.prefWidth(Region.USE_COMPUTED_SIZE);
-				gridStock.setMaxWidth(Region.USE_PREF_SIZE);
 
-				gridStock.minHeight(Region.USE_COMPUTED_SIZE);
-				gridStock.prefHeight(Region.USE_COMPUTED_SIZE);
-				gridStock.setMaxHeight(Region.USE_PREF_SIZE);
+				GridPane.setMargin(root, new Insets(15));
+
+				gridStockVehiculo.minWidth(Region.USE_COMPUTED_SIZE);
+				gridStockVehiculo.prefWidth(Region.USE_COMPUTED_SIZE);
+				gridStockVehiculo.setMaxWidth(Region.USE_PREF_SIZE);
+
+				gridStockVehiculo.minHeight(Region.USE_COMPUTED_SIZE);
+				gridStockVehiculo.prefHeight(Region.USE_COMPUTED_SIZE);
+				gridStockVehiculo.setMaxHeight(Region.USE_PREF_SIZE);
 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
