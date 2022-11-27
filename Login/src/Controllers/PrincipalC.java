@@ -57,6 +57,7 @@ public class PrincipalC {
 	    @FXML
 	    void vistaInicio(MouseEvent event) throws IOException {
 	    	escenaInicio();
+	    	borderPane.setLeft(null);
 	    }
 
 	

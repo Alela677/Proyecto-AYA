@@ -2,7 +2,6 @@ package Controllers;
 
 import java.io.IOException;
 
-import Models.PaneStock;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -45,7 +44,7 @@ public class InicioC {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SceneVentas.fxml"));
 		AnchorPane root = loader.load();
 		LoginController.root.setCenter(root);
-		
+
 	}
 
 	private void escenaEmpleados() throws IOException {

@@ -22,7 +22,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class LoginController {
-	
+
 	public static BorderPane root;
 	private Stage stage;
 
@@ -47,13 +47,19 @@ public class LoginController {
 	@FXML
 	private TextField txtUser;
 
+	private Usuarios comprobar;
+
 	@FXML
 	void logeo(MouseEvent event) throws IOException {
 
 		String nombre = txtUser.getText();
 		String passwd = txtPassword.getText();
 
-		Usuarios comprobar = UsuariosDAO.consultarUsuarios(nombre, passwd);
+		try {
+			comprobar = UsuariosDAO.consultarUsuarios(nombre, passwd);
+		} catch (NullPointerException e) {
+			alertaError();
+		}
 
 		boolean registrado = false;
 
@@ -65,11 +71,11 @@ public class LoginController {
 
 			FXMLLoader loade = new FXMLLoader(getClass().getResource("/Views/PrincipalView.fxml"));
 			root = loade.load();
-			PrincipalC control = loade.getController(); 
+			PrincipalC control = loade.getController();
 			Scene escena = new Scene(root);
 			Stage stage = new Stage();
 			stage.setScene(escena);
-			control.init(stage,this,txtUser.getText(),root);
+			control.init(stage, this, txtUser.getText(), root);
 			stage.show();
 			this.stage.close();
 
@@ -146,7 +152,5 @@ public class LoginController {
 		stage = primaryStage;
 
 	}
-
-
 
 }

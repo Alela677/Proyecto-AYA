@@ -1,23 +1,30 @@
 package Models;
 
-import javafx.scene.layout.Pane;
-
-public class PaneStock extends Pane {
+public class Vehiculo {
 
 	private String marca;
 	private String modelo;
 	private String color;
-	private double precio;
+	private int precio;
 	private int stock;
+	private String imagen;
 
-	public PaneStock(String marca, String modelo, String color, double precio, int stock) {
+	public Vehiculo(String marca, String modelo, String color, int precio, int stock, String img) {
 		super();
 		this.marca = marca;
 		this.modelo = modelo;
 		this.color = color;
 		this.precio = precio;
 		this.stock = stock;
+		this.imagen = img;
+	}
 
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 	public String getMarca() {
@@ -48,7 +55,7 @@ public class PaneStock extends Pane {
 		return precio;
 	}
 
-	public void setPrecio(double precio) {
+	public void setPrecio(int precio) {
 		this.precio = precio;
 	}
 

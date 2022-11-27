@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -27,6 +28,9 @@
                </image>
             </ImageView>
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </Pane>
       <Pane fx:id="paneResumen" layoutX="250.0" layoutY="65.0" onMouseClicked="#vistaResumen" prefHeight="376.0" prefWidth="321.0" style="-fx-background-color: lightblue;">
          <children>
@@ -41,6 +45,12 @@
                </image>
             </ImageView>
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </Pane>
    </children>
+   <effect>
+      <DropShadow blurType="ONE_PASS_BOX" radius="4.75" width="0.0" />
+   </effect>
 </AnchorPane>
