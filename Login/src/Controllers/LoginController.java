@@ -54,17 +54,16 @@ public class LoginController {
 
 		String nombre = txtUser.getText();
 		String passwd = txtPassword.getText();
-
+		boolean registrado = false;
+		
 		try {
 			comprobar = UsuariosDAO.consultarUsuarios(nombre, passwd);
+
+			if (comprobar.getNombre().equals(nombre) && comprobar.getPassword().equals(passwd)) {
+				registrado = true;
+			}
 		} catch (NullPointerException e) {
 			alertaError();
-		}
-
-		boolean registrado = false;
-
-		if (comprobar.getNombre().equals(nombre) && comprobar.getPassword().equals(passwd)) {
-			registrado = true;
 		}
 
 		if (registrado == true) {

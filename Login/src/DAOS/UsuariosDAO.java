@@ -17,11 +17,11 @@ public class UsuariosDAO {
 
 		 
 		ArrayList<Usuarios> user = new ArrayList<Usuarios>();
-		user.add(new Usuarios(1, "Luis", "1234"));
-		user.add(new Usuarios(2, "David", "1234"));
-		user.add(new Usuarios(3, "Maria", "1234"));
-
-		introducirUsuarios(user);
+//		user.add(new Usuarios(1, "Luis", "1234"));
+//		user.add(new Usuarios(2, "David", "1234"));
+//		user.add(new Usuarios(3, "Maria", "1234"));
+//
+//		introducirUsuarios(user);
 		
 
 		

@@ -67,4 +67,11 @@ public class Vehiculo {
 		this.stock = stock;
 	}
 
+	@Override
+	public String toString() {
+		return "Vehiculo [marca=" + marca + ", modelo=" + modelo + ", color=" + color + ", precio=" + precio
+				+ ", stock=" + stock + ", imagen=" + imagen + "]";
+	}
+
+	
 }
