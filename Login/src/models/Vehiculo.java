@@ -1,7 +1,8 @@
-package Models;
+package models;
 
 public class Vehiculo {
-
+	
+	private int id ;
 	private String marca;
 	private String modelo;
 	private String color;
@@ -11,6 +12,7 @@ public class Vehiculo {
 
 	public Vehiculo(String marca, String modelo, String color, int precio, int stock, String img) {
 		super();
+		
 		this.marca = marca;
 		this.modelo = modelo;
 		this.color = color;

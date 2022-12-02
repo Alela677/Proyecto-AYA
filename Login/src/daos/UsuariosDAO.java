@@ -1,4 +1,4 @@
-package DAOS;
+package daos;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import Models.Usuarios;
+import models.Usuarios;
 
 public class UsuariosDAO {
 

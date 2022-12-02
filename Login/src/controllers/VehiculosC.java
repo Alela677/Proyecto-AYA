@@ -1,10 +1,10 @@
-package Controllers;
+package controllers;
 
-import Models.Vehiculo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import models.Vehiculo;
 
 public class VehiculosC {
 
@@ -33,7 +33,7 @@ public class VehiculosC {
 		vehiculoColor.setText(vehiculo.getColor());
 		vehiculoPrecio.setText(String.valueOf(vehiculo.getPrecio()));
 		vehiculoStock.setText(String.valueOf(vehiculo.getStock()));
-		Image imagen = new Image(getClass().getResourceAsStream(vehiculo.getImagen()));
+		Image imagen = new Image(getClass().getResourceAsStream("/images/"+vehiculo.getImagen()));
 		vehiculoImagen.setImage(imagen);
 
 	}

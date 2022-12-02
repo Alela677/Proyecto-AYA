@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 
 import java.io.IOException;
 
@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 public class VentaC {
@@ -31,7 +32,6 @@ public class VentaC {
 	private void escenaStock() throws IOException {
 		FXMLLoader loade = new FXMLLoader(getClass().getResource("/Views/ScenaStock.fxml"));
 		AnchorPane root = loade.load();
-
 		LoginController.root.setCenter(root);
 
 	}

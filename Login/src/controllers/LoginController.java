@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 
 import java.awt.Desktop;
 import java.io.IOException;
@@ -6,8 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import DAOS.UsuariosDAO;
-import Models.Usuarios;
+import daos.UsuariosDAO;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import models.Usuarios;
 
 public class LoginController {
 
@@ -68,7 +68,7 @@ public class LoginController {
 
 		if (registrado == true) {
 
-			FXMLLoader loade = new FXMLLoader(getClass().getResource("/Views/PrincipalView.fxml"));
+			FXMLLoader loade = new FXMLLoader(getClass().getResource("/views/PrincipalView.fxml"));
 			root = loade.load();
 			PrincipalC control = loade.getController();
 			Scene escena = new Scene(root);

@@ -1,10 +1,11 @@
+
 package application;
 	
 
 
 import java.io.IOException;
 
-import Controllers.LoginController;
+import controllers.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,7 +17,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/LoginView.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/LoginView.fxml"));
 		Parent root = loader.load();
 		Scene escena = new Scene(root);
 		primaryStage.setScene(escena);
