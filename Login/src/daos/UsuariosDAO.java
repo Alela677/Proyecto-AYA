@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
 
 import models.Usuarios;
 
@@ -16,7 +13,7 @@ public class UsuariosDAO {
 	public static void main(String[] args) {
 
 		 
-		ArrayList<Usuarios> user = new ArrayList<Usuarios>();
+//		ArrayList<Usuarios> user = new ArrayList<Usuarios>();
 //		user.add(new Usuarios(1, "Luis", "1234"));
 //		user.add(new Usuarios(2, "David", "1234"));
 //		user.add(new Usuarios(3, "Maria", "1234"));

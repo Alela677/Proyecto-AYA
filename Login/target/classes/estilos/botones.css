@@ -1,0 +1,10 @@
+.botones{
+	-fx-background-color: white;
+	
+}
+
+.botones:hover{
+	-fx-border-color: #00397A;
+    -fx-border-width: 2;
+    -fx-border-radius:2.0;
+}

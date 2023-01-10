@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.List;
 
 import daos.UsuariosDAO;
+import daos.VehiculosDAO;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import models.Usuarios;
+import models.Vehiculo;
 
 public class LoginController {
 
@@ -58,7 +61,7 @@ public class LoginController {
 		
 		try {
 			comprobar = UsuariosDAO.consultarUsuarios(nombre, passwd);
-
+			
 			if (comprobar.getNombre().equals(nombre) && comprobar.getPassword().equals(passwd)) {
 				registrado = true;
 			}

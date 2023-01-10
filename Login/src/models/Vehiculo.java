@@ -1,18 +1,40 @@
 package models;
 
-public class Vehiculo {
-	
-	private int id ;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Vehiculos")
+public class Vehiculo implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	@Column(name = "marca")
 	private String marca;
+	@Column(name = "modelo")
 	private String modelo;
+	@Column(name = "color")
 	private String color;
+	@Column(name = "precio")
 	private int precio;
+	@Column(name = "stock")
 	private int stock;
+	@Column(name = "imagen")
 	private String imagen;
 
+	public  Vehiculo() {		
+	}
+	
 	public Vehiculo(String marca, String modelo, String color, int precio, int stock, String img) {
 		super();
-		
+
 		this.marca = marca;
 		this.modelo = modelo;
 		this.color = color;
@@ -75,5 +97,4 @@ public class Vehiculo {
 				+ ", stock=" + stock + ", imagen=" + imagen + "]";
 	}
 
-	
 }

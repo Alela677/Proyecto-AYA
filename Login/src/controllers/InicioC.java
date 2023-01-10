@@ -2,15 +2,14 @@ package controllers;
 
 import java.io.IOException;
 
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+
 
 public class InicioC {
 
@@ -24,6 +23,9 @@ public class InicioC {
 	private ImageView mecanicos;
 
 	@FXML
+	private ImageView imgVentas;
+
+	@FXML
 	void vistaEmpleados(MouseEvent event) throws IOException {
 		escenaEmpleados();
 	}
@@ -35,10 +37,10 @@ public class InicioC {
 
 	@FXML
 	void vistaVentas(MouseEvent event) throws IOException {
-
 		escenaVentas();
-
 	}
+
+	
 
 	private void escenaVentas() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SceneVentas.fxml"));
@@ -58,4 +60,6 @@ public class InicioC {
 		AnchorPane root = loader.load();
 		LoginController.root.setCenter(root);
 	}
+
+	
 }

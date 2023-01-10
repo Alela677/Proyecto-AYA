@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="1346.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.VentaC">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="1346.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.VentaC">
    <children>
       <Label layoutX="33.0" layoutY="29.0" text="Ventas" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="22.0">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Pane fx:id="paneStock" layoutX="760.0" layoutY="65.0" onMouseClicked="#vistaStockVehiculos" prefHeight="376.0" prefWidth="321.0" style="-fx-background-color: lightblue;">
+      <Pane fx:id="paneStock" layoutX="760.0" layoutY="65.0" onMouseClicked="#vistaStockVehiculos" prefHeight="376.0" prefWidth="321.0" style="-fx-background-color: lightblue;" styleClass="paneles" stylesheets="@../estilos/paneles.css">
          <children>
             <Label layoutX="14.0" layoutY="199.0" text="Stock de vehiculos">
                <font>
@@ -32,7 +32,7 @@
             <DropShadow />
          </effect>
       </Pane>
-      <Pane fx:id="paneResumen" layoutX="250.0" layoutY="65.0" onMouseClicked="#vistaResumen" prefHeight="376.0" prefWidth="321.0" style="-fx-background-color: lightblue;">
+      <Pane fx:id="paneResumen" layoutX="250.0" layoutY="65.0" onMouseClicked="#vistaResumen" prefHeight="376.0" prefWidth="321.0" style="-fx-background-color: lightblue;" styleClass="paneles" stylesheets="@../estilos/paneles.css">
          <children>
             <Label layoutX="14.0" layoutY="201.0" text="Resumen de ventas">
                <font>
