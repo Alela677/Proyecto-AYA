@@ -191,8 +191,18 @@ public class StockC implements Initializable {
 	}
 
 	@FXML
-	void verVehiculosEntre(ActionEvent event) {
+	void verVehiculosEntre(ActionEvent event) throws IOException {
+		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
+		paneles.clear();
+		vehiculos.clear();
 
+		// Repetimos el proceso cuando pulsamos el boton
+		int columna = 0;
+		int fila = 0;
+		vehiculos = VehiculosDAO.entreVeinteCincuenta();
+		paneles = grid.crearPaneles(vehiculos);
+		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
+		borderPaneStock.setCenter(nuevoGrid);
 	}
 
 	@FXML
@@ -256,13 +266,33 @@ public class StockC implements Initializable {
 	}
 
 	@FXML
-	void verVehiculosMasCincuenta(ActionEvent event) {
+	void verVehiculosMasCincuenta(ActionEvent event) throws IOException {
+		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
+		paneles.clear();
+		vehiculos.clear();
 
+		// Repetimos el proceso cuando pulsamos el boton
+		int columna = 0;
+		int fila = 0;
+		vehiculos = VehiculosDAO.mayorCincuenta();
+		paneles = grid.crearPaneles(vehiculos);
+		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
+		borderPaneStock.setCenter(nuevoGrid);
 	}
 
 	@FXML
-	void verVehiculosMenosVeinte(ActionEvent event) {
+	void verVehiculosMenosVeinte(ActionEvent event) throws IOException {
+		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
+		paneles.clear();
+		vehiculos.clear();
 
+		// Repetimos el proceso cuando pulsamos el boton
+		int columna = 0;
+		int fila = 0;
+		vehiculos = VehiculosDAO.menorVeinte();
+		paneles = grid.crearPaneles(vehiculos);
+		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
+		borderPaneStock.setCenter(nuevoGrid);
 	}
 
 	@FXML

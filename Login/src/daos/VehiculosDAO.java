@@ -59,4 +59,41 @@ public class VehiculosDAO {
 		return listaResultado;
 
 	}
+
+	public static List<Vehiculo> menorVeinte() {
+
+		StandardServiceRegistry sr = new StandardServiceRegistryBuilder().configure().build();
+		SessionFactory sf = new MetadataSources(sr).buildMetadata().buildSessionFactory();
+
+		Session sesion = sf.openSession();
+		Query query = sesion.createQuery("FROM Vehiculo v WHERE v.precio < '20000'");
+		List<Vehiculo> listaResultado = query.list();
+		return listaResultado;
+
+	}
+
+	public static List<Vehiculo> mayorCincuenta() {
+
+		StandardServiceRegistry sr = new StandardServiceRegistryBuilder().configure().build();
+		SessionFactory sf = new MetadataSources(sr).buildMetadata().buildSessionFactory();
+
+		Session sesion = sf.openSession();
+		Query query = sesion.createQuery("FROM Vehiculo v WHERE v.precio > '50000'");
+		List<Vehiculo> listaResultado = query.list();
+		return listaResultado;
+
+	}
+
+	public static List<Vehiculo> entreVeinteCincuenta() {
+
+		StandardServiceRegistry sr = new StandardServiceRegistryBuilder().configure().build();
+		SessionFactory sf = new MetadataSources(sr).buildMetadata().buildSessionFactory();
+
+		Session sesion = sf.openSession();
+		Query query = sesion.createQuery("FROM Vehiculo v WHERE v.precio between '20000' AND '50000'");
+		List<Vehiculo> listaResultado = query.list();
+		return listaResultado;
+
+	}
+
 }
