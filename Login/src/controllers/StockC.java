@@ -29,14 +29,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import models.Vehiculo;
-import utils.Gridpanel;
+import utils.GridpanelVehiculos;
 
 public class StockC implements Initializable {
 	private static SessionFactory sessionFactory;
 	private static Session session;
 	private VehiculosC controlador;
 	private GridPane nuevoGrid;
-	private Gridpanel grid = new Gridpanel();
+	private GridpanelVehiculos grid = new GridpanelVehiculos();
 	// Lista de vehiculos
 	private List<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
 

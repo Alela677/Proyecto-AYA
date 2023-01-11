@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import models.Vehiculo;
 
 public class EmpleadosC {
 
@@ -23,7 +24,15 @@ public class EmpleadosC {
 
 	@FXML
 	void vistaEmpleados(MouseEvent event) throws IOException {
+		vistaVerEmpleado();
+	}
+
+	private void vistaVerEmpleado() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SceneVerEmpleados.fxml"));
+		AnchorPane root = loader.load();
+		LoginController.root.setCenter(root);
 
 	}
 
+	
 }

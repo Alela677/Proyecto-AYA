@@ -7,12 +7,13 @@
 		<property name="connection.username">root</property>
 		<property name="connection.password">root</property>
 		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
-		<!-- <property name="hibernate.show_sql">true</property> -->
+		<property name="hibernate.show_sql">true</property>
 		<!-- <property name="hibernate.hbm2ddl.auto">create</property> -->
-	
-		<mapping class="models.Usuarios" />
-		<mapping class="models.Vehiculo" />
-		
+
+		<mapping class="models.Usuarios"/>
+		<mapping class="models.Vehiculo"/>
+		<mapping class="models.Empleados"/>
+
 
 	</session-factory>
 </hibernate-configuration>
