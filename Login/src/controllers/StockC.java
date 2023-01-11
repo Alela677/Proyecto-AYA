@@ -9,8 +9,13 @@ import java.util.ResourceBundle;
 import javax.persistence.Query;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import daos.HibernateUtil;
+import daos.UsuariosDAO;
 import daos.VehiculosDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +32,8 @@ import models.Vehiculo;
 import utils.Gridpanel;
 
 public class StockC implements Initializable {
-
+	private static SessionFactory sessionFactory;
+	private static Session session;
 	private VehiculosC controlador;
 	private GridPane nuevoGrid;
 	private Gridpanel grid = new Gridpanel();
@@ -64,15 +70,10 @@ public class StockC implements Initializable {
 		int columna = 0;
 		int fila = 0;
 
-		for (int i = 0; i < 10; i++) {
-			Vehiculo nuevo = new Vehiculo("SEAT", "IBIZA", "AZUL", 17000, 21, "ibizaAzul.jpg");
-			vehiculos.add(nuevo);
-
-		}
-
 		paneles = grid.crearPaneles(vehiculos);
 		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 		borderPaneStock.setCenter(nuevoGrid);
+		
 	}
 
 	/**
@@ -88,8 +89,7 @@ public class StockC implements Initializable {
 		int fila = 0;
 
 		try {
-
-			vehiculos = VehiculosDAO.consultarVehiculos();
+			vehiculos = VehiculosDAO.consultaVehiculos();
 			paneles = grid.crearPaneles(vehiculos);
 			nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 			borderPaneStock.setCenter(nuevoGrid);

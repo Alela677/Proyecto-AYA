@@ -8,7 +8,6 @@ import java.net.URL;
 import java.util.List;
 
 import daos.UsuariosDAO;
-import daos.VehiculosDAO;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

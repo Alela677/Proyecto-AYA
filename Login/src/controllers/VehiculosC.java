@@ -35,7 +35,7 @@ public class VehiculosC {
 		vehiculoStock.setText(String.valueOf(vehiculo.getStock()));
 		Image imagen = new Image(getClass().getResourceAsStream("/images/"+vehiculo.getImagen()));
 		vehiculoImagen.setImage(imagen);
-
+		
 	}
 
 	

@@ -1,56 +1,25 @@
 package daos;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import models.Vehiculo;
 
 public class VehiculosDAO {
 
-	public static void main(String[] args) {
+	public static List<Vehiculo> consultaVehiculos() {
+		StandardServiceRegistry sr = new StandardServiceRegistryBuilder().configure().build();
+		SessionFactory sf = new MetadataSources(sr).buildMetadata().buildSessionFactory();
 
-//		ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
-//		Vehiculo v1 = new Vehiculo("SEAT", "IBIZA", "ROJO", 17000, 3, "ibiza.jpg");
-//		Vehiculo v2 = new Vehiculo("AUDI", "A3", "GRIS", 29000, 2, "audia3.jpg");
-//		vehiculos.add(v1);
-//		vehiculos.add(v2);
-//
-//		introducirVehicuclos(vehiculos);
-//		consultarVehiculos();
-	}
-
-	private static void introducirVehicuclos(ArrayList<Vehiculo> vehiculos) {
-		Session sesion = HibernateUtil.getSession();
-
-		sesion.beginTransaction();
-
-		for (Vehiculo vehiculo : vehiculos) {
-			sesion.save(vehiculo);
-		}
-
-		sesion.getTransaction().commit();
-		sesion.close();
-	}
-	
-	
-	public static List<Vehiculo> consultarVehiculos() {
-		
-		Session sesion = HibernateUtil.getSession();
-		
-		sesion.getTransaction().begin();
-
-		Query query = sesion.createQuery("Select v FROM Vehiculo v");
+		Session sesion = sf.openSession();
+		org.hibernate.Query query = sesion.createQuery("FROM Vehiculo");
 		List<Vehiculo> listaVehiculos = query.list();
-		for (Vehiculo vehiculo : listaVehiculos) {
-			System.out.println(vehiculo);
-		}
-		sesion.getTransaction().commit();
 		sesion.close();
-
 		return listaVehiculos;
 	}
-
 }
