@@ -2,6 +2,7 @@ package daos;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -21,5 +22,41 @@ public class VehiculosDAO {
 		List<Vehiculo> listaVehiculos = query.list();
 		sesion.close();
 		return listaVehiculos;
+	}
+
+	public static List<Vehiculo> vehiculosPorColor(String color) {
+
+		StandardServiceRegistry sr = new StandardServiceRegistryBuilder().configure().build();
+		SessionFactory sf = new MetadataSources(sr).buildMetadata().buildSessionFactory();
+
+		Session sesion = sf.openSession();
+		Query query = sesion.createQuery("FROM Vehiculo v WHERE v.color = '" + color + "'");
+		List<Vehiculo> listaResultado = query.list();
+		return listaResultado;
+
+	}
+
+	public static List<Vehiculo> vehiculosPorMarca(String marca) {
+
+		StandardServiceRegistry sr = new StandardServiceRegistryBuilder().configure().build();
+		SessionFactory sf = new MetadataSources(sr).buildMetadata().buildSessionFactory();
+
+		Session sesion = sf.openSession();
+		Query query = sesion.createQuery("FROM Vehiculo v WHERE v.marca = '" + marca + "'");
+		List<Vehiculo> listaResultado = query.list();
+		return listaResultado;
+
+	}
+
+	public static List<Vehiculo> vehiculosPorModelo(String modelo) {
+
+		StandardServiceRegistry sr = new StandardServiceRegistryBuilder().configure().build();
+		SessionFactory sf = new MetadataSources(sr).buildMetadata().buildSessionFactory();
+
+		Session sesion = sf.openSession();
+		Query query = sesion.createQuery("FROM Vehiculo v WHERE v.modelo = '" + modelo + "'");
+		List<Vehiculo> listaResultado = query.list();
+		return listaResultado;
+
 	}
 }

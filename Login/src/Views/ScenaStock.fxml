@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="1312.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StockC">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="1312.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StockC">
    <children>
       <Label layoutX="8.0" layoutY="14.0" prefHeight="53.0" prefWidth="235.0" text="Stock Vehiculos" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="14.0">
          <font>
@@ -26,7 +26,7 @@
          <content>
             <AnchorPane prefHeight="478.0" prefWidth="1032.0">
                <children>
-                  <BorderPane fx:id="borderPaneStock" layoutX="-13.0" layoutY="-30.0" prefHeight="450.0" prefWidth="996.0" />
+                  <BorderPane fx:id="borderPaneStock" layoutX="28.0" layoutY="28.0" prefHeight="422.0" prefWidth="976.0" />
                </children>
             </AnchorPane>
          </content>
@@ -34,6 +34,10 @@
       <MenuButton fx:id="btnColores" layoutX="22.0" layoutY="138.0" mnemonicParsing="false" prefWidth="150.0" styleClass="botones" stylesheets="@../estilos/botones.css" text="Colores">
         <items>
           <MenuItem fx:id="itemAzul" mnemonicParsing="false" onAction="#verVehiculosAzules" text="Azul" />
+            <MenuItem fx:id="itemRojo" mnemonicParsing="false" onAction="#verVehiculosRojos" text="Rojo" />
+            <MenuItem fx:id="itemVerde" mnemonicParsing="false" onAction="#verVehiculosVerde" text="Verde" />
+            <MenuItem fx:id="itemGris" mnemonicParsing="false" onAction="#verVehiculosGris" text="Gris" />
+            <MenuItem fx:id="itemNegro" mnemonicParsing="false" onAction="#verVehiculosNegro" text="Negro" />
         </items>
          <font>
             <Font size="15.0" />
@@ -41,7 +45,12 @@
       </MenuButton>
       <MenuButton fx:id="btnColores1" layoutX="22.0" layoutY="183.0" mnemonicParsing="false" prefWidth="150.0" styleClass="botones" stylesheets="@../estilos/botones.css" text="Marca">
          <items>
-            <MenuItem fx:id="itemAzul1" mnemonicParsing="false" onAction="#verVehiculosAzules" text="Azul" />
+            <MenuItem fx:id="itemSeat" mnemonicParsing="false" onAction="#verVehiculosSeat" text="SEAT" />
+            <MenuItem fx:id="itemBMW" mnemonicParsing="false" onAction="#verVehiculosBMW" text="BMW" />
+            <MenuItem fx:id="itemCupra" mnemonicParsing="false" onAction="#verVehiculosCupra" text="CUPRA" />
+            <MenuItem fx:id="itemAudi" mnemonicParsing="false" onAction="#verVehiculosAudi" text="AUDI" />
+            <MenuItem fx:id="itemKia" mnemonicParsing="false" onAction="#verVehiculosKia" text="KIA" />
+            <MenuItem fx:id="itemFord" mnemonicParsing="false" onAction="#verVehiculosFord" text="FORD" />
          </items>
          <font>
             <Font size="15.0" />
@@ -49,7 +58,12 @@
       </MenuButton>
       <MenuButton fx:id="btnColores11" layoutX="21.0" layoutY="226.0" mnemonicParsing="false" prefWidth="150.0" styleClass="botones" stylesheets="@../estilos/botones.css" text="Modelo">
          <items>
-            <MenuItem fx:id="itemAzul11" mnemonicParsing="false" onAction="#verVehiculosAzules" text="Azul" />
+            <MenuItem fx:id="itemIbiza" mnemonicParsing="false" onAction="#verVehiculosIbiza" text="IBIZA" />
+            <MenuItem fx:id="itemA3" mnemonicParsing="false" onAction="#verVehiculosA3" text="A3" />
+            <MenuItem fx:id="itemUrbaR" mnemonicParsing="false" onAction="#verVehiculosUrbanR" text="URBAN REBEL" />
+            <MenuItem fx:id="itemI7" mnemonicParsing="false" onAction="#verVehiculosI7" text="I7" />
+            <MenuItem fx:id="itemRio" mnemonicParsing="false" onAction="#verVehiculosRio" text="RIO" />
+            <MenuItem fx:id="itemFocus" mnemonicParsing="false" onAction="#verVehiculosFocus" text="FOCUS" />
          </items>
          <font>
             <Font size="15.0" />
@@ -57,7 +71,9 @@
       </MenuButton>
       <MenuButton fx:id="btnColores111" layoutX="21.0" layoutY="272.0" mnemonicParsing="false" prefWidth="150.0" styleClass="botones" stylesheets="@../estilos/botones.css" text="Precio">
          <items>
-            <MenuItem fx:id="itemAzul111" mnemonicParsing="false" onAction="#verVehiculosAzules" text="Azul" />
+            <MenuItem fx:id="itemMenosDiez" mnemonicParsing="false" onAction="#verVehiculosMenosVeinte" text="- 20.000" />
+            <MenuItem fx:id="itemEntre" mnemonicParsing="false" onAction="#verVehiculosEntre" text="20.000 - 50.000" />
+            <MenuItem fx:id="itemMasCincuenta" mnemonicParsing="false" onAction="#verVehiculosMasCincuenta" text="+50.000" />
          </items>
          <font>
             <Font size="15.0" />
