@@ -5,12 +5,17 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import models.Usuarios;
 import models.Vehiculo;
 
-public class UsuariosDAO {
+public class UsuariosDAO extends ComunesDAO<Usuarios> {
 	private static Session sesion = HibernateUtil.getSession();
+
 	public static void main(String[] args) {
 
 //		ArrayList<Usuarios> user = new ArrayList<Usuarios>();
@@ -20,8 +25,11 @@ public class UsuariosDAO {
 //
 //		introducirUsuarios(user);
 
+		
 	}
-
+	
+	
+	
 	public static void introducirUsuarios(ArrayList<Usuarios> user) {
 		sesion = HibernateUtil.getSession();
 		sesion.getTransaction().begin();
@@ -54,23 +62,7 @@ public class UsuariosDAO {
 		return nuevo;
 
 	}
+
 	
-	public static List<Vehiculo> consultarVehiculos() {
-
-		Session sesion = HibernateUtil.getSession();
-		
-		sesion.beginTransaction();
-
-		Query query = sesion.createQuery("FROM Vehiculo");
-		List<Vehiculo> listaVehiculos = query.list();
-		for (Vehiculo vehiculo : listaVehiculos) {
-			System.out.println(vehiculo);
-		}
-		
-		sesion.getTransaction().commit();
-		sesion.close();
-
-		return listaVehiculos;
-	}
 
 }

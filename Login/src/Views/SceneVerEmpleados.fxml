@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="1346.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.VerEmpleadosC">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="1346.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.VerEmpleadosC">
    <children>
-      <Label layoutX="14.0" layoutY="29.0" text="Ver Empleados">
+      <Label layoutX="8.0" layoutY="14.0" prefHeight="48.0" prefWidth="214.0" text="Ver Empleados">
          <font>
-            <Font size="24.0" />
+            <Font size="32.0" />
          </font>
       </Label>
       <ScrollPane layoutX="234.0" layoutY="20.0" prefHeight="477.0" prefWidth="1102.0">
          <content>
-            <AnchorPane prefHeight="474.0" prefWidth="1094.0" style="-fx-background-color: white;">
+            <AnchorPane prefHeight="468.0" prefWidth="1065.0" style="-fx-background-color: white;">
                <children>
-                  <BorderPane fx:id="borderPaneEmpleados" layoutX="14.0" layoutY="14.0" prefHeight="448.0" prefWidth="1067.0" style="-fx-background-color: white;" />
+                  <BorderPane fx:id="borderPaneEmpleados" layoutX="14.0" layoutY="14.0" prefHeight="448.0" prefWidth="1070.0" style="-fx-background-color: white;" />
                </children>
             </AnchorPane>
          </content>
       </ScrollPane>
+      <ComboBox fx:id="comboBoxDepartamentos" layoutX="14.0" layoutY="160.0" prefHeight="25.0" prefWidth="201.0" />
+      <Label layoutX="14.0" layoutY="87.0" prefHeight="17.0" prefWidth="201.0" text="Busqueda Avanzada">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Line endX="9.0" endY="234.0" layoutX="215.0" layoutY="259.0" startX="9.0" startY="-169.0" />
+      <Label layoutX="14.0" layoutY="133.0" text="Departamento">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

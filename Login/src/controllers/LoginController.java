@@ -6,11 +6,13 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import daos.UsuariosDAO;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -23,7 +25,7 @@ import javafx.stage.Stage;
 import models.Usuarios;
 import models.Vehiculo;
 
-public class LoginController {
+public class LoginController implements Initializable {
 
 	public static BorderPane root;
 	private Stage stage;
@@ -152,6 +154,13 @@ public class LoginController {
 	public void setStage(Stage primaryStage) {
 		stage = primaryStage;
 
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		txtUser.setText("Luis");
+		txtPassword.setText("1234");
+		
 	}
 
 }
