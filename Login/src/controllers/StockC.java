@@ -6,16 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.persistence.Query;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import daos.HibernateUtil;
-import daos.UsuariosDAO;
 import daos.VehiculosDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,8 +25,11 @@ import models.Vehiculo;
 import utils.GridpanelVehiculos;
 
 public class StockC implements Initializable {
+	@SuppressWarnings("unused")
 	private static SessionFactory sessionFactory;
+	@SuppressWarnings("unused")
 	private static Session session;
+	@SuppressWarnings("unused")
 	private VehiculosC controlador;
 	private GridPane nuevoGrid;
 	private GridpanelVehiculos grid = new GridpanelVehiculos();

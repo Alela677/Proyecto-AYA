@@ -70,7 +70,7 @@
             </MenuButton>
             <MenuButton fx:id="menuEmpleados" layoutX="1098.0" layoutY="144.0" mnemonicParsing="false" prefWidth="120.0" styleClass="botones" stylesheets="@../estilos/botones.css" text="Empleados">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem fx:id="itemEmpleados" mnemonicParsing="false" onAction="#mostrarVistaVerEmpleados" text="Ver Empleados" />
                   <MenuItem mnemonicParsing="false" text="Action 2" />
                </items>
                <font>

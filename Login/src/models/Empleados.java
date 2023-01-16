@@ -1,7 +1,7 @@
 package models;
 
 import java.io.Serializable;
-import java.sql.Date;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,7 +47,6 @@ public class Empleados implements Serializable {
 
 		super();
 
-		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.dni = dni;

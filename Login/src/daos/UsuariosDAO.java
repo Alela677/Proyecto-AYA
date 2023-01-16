@@ -1,19 +1,13 @@
 package daos;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import models.Usuarios;
-import models.Vehiculo;
 
-public class UsuariosDAO extends ComunesDAO<Usuarios> {
+public class UsuariosDAO {
 	private static Session sesion = HibernateUtil.getSession();
 
 	public static void main(String[] args) {
@@ -25,11 +19,8 @@ public class UsuariosDAO extends ComunesDAO<Usuarios> {
 //
 //		introducirUsuarios(user);
 
-		
 	}
-	
-	
-	
+
 	public static void introducirUsuarios(ArrayList<Usuarios> user) {
 		sesion = HibernateUtil.getSession();
 		sesion.getTransaction().begin();
@@ -62,7 +53,5 @@ public class UsuariosDAO extends ComunesDAO<Usuarios> {
 		return nuevo;
 
 	}
-
-	
 
 }

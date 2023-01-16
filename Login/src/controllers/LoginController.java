@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.List;
+
 import java.util.ResourceBundle;
 
 import daos.UsuariosDAO;
@@ -23,7 +23,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import models.Usuarios;
-import models.Vehiculo;
 
 public class LoginController implements Initializable {
 
@@ -59,10 +58,10 @@ public class LoginController implements Initializable {
 		String nombre = txtUser.getText();
 		String passwd = txtPassword.getText();
 		boolean registrado = false;
-		
+
 		try {
 			comprobar = UsuariosDAO.consultarUsuarios(nombre, passwd);
-			
+
 			if (comprobar.getNombre().equals(nombre) && comprobar.getPassword().equals(passwd)) {
 				registrado = true;
 			}
@@ -160,7 +159,7 @@ public class LoginController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		txtUser.setText("Luis");
 		txtPassword.setText("1234");
-		
+
 	}
 
 }

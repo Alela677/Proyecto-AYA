@@ -11,7 +11,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import models.Vehiculo;
 
-public class VehiculosDAO extends ComunesDAO<Vehiculo> {
+public class VehiculosDAO{
 	
 	private static 	StandardServiceRegistry sr = new StandardServiceRegistryBuilder().configure().build();
 	private static SessionFactory sf = new MetadataSources(sr).buildMetadata().buildSessionFactory();
