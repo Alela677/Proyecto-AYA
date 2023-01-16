@@ -78,4 +78,15 @@ public class PrincipalC {
 		borderPane.setCenter(root);
 
 	}
+
+	@FXML
+	void mostrasCrearEmpleado(ActionEvent event) throws IOException {
+		escenaCrearEmpledos();
+	}
+
+	private void escenaCrearEmpledos() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SceneCrearEmpleado.fxml"));
+		AnchorPane root = loader.load();
+		borderPane.setCenter(root);
+	}
 }

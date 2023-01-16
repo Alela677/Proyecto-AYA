@@ -17,15 +17,16 @@ public class EmpleadosC {
 	private Pane paneCrear;
 
 	@FXML
-	void vistaCrearEmpleado(MouseEvent event) {
-
+	void vistaCrearEmpleado(MouseEvent event) throws IOException {
+		vistaCrearEmpleado();
 	}
 
 	@FXML
 	void vistaEmpleados(MouseEvent event) throws IOException {
 		vistaVerEmpleado();
 	}
-
+	
+	
 	private void vistaVerEmpleado() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SceneVerEmpleados.fxml"));
 		AnchorPane root = loader.load();
@@ -33,4 +34,9 @@ public class EmpleadosC {
 
 	}
 
+	private void vistaCrearEmpleado() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SceneCrearEmpleado.fxml"));
+		AnchorPane root = loader.load();
+		LoginController.root.setCenter(root);
+	}
 }

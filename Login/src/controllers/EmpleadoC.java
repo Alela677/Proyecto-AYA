@@ -1,11 +1,13 @@
 package controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import daos.EmpleadosDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import models.Empleados;
 
@@ -85,8 +88,9 @@ public class EmpleadoC implements Initializable {
 	}
 
 	@FXML
-	void eliminaEmpleados(ActionEvent event) {
+	void eliminaEmpleados(ActionEvent event) throws IOException {
 		EmpleadosDAO.eliminaEmpleado(prueba);
+		actualizarPagina();
 
 	}
 
@@ -144,5 +148,10 @@ public class EmpleadoC implements Initializable {
 		txtDNI.setEditable(false);
 
 	}
-
+	
+	private void actualizarPagina() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SceneVerEmpleados.fxml"));
+		AnchorPane root = loader.load();
+		LoginController.root.setCenter(root);
+	}
 }

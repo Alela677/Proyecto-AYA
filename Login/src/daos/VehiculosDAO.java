@@ -11,12 +11,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import models.Vehiculo;
 
-public class VehiculosDAO{
-	
-	private static 	StandardServiceRegistry sr = new StandardServiceRegistryBuilder().configure().build();
+public class VehiculosDAO {
+
+	private static StandardServiceRegistry sr = new StandardServiceRegistryBuilder().configure().build();
 	private static SessionFactory sf = new MetadataSources(sr).buildMetadata().buildSessionFactory();
-	
-	
+
 	public static List<Vehiculo> consultaVehiculos() {
 		Session sesion = sf.openSession();
 		org.hibernate.Query query = sesion.createQuery("FROM Vehiculo");
@@ -25,9 +24,8 @@ public class VehiculosDAO{
 		return listaVehiculos;
 	}
 
-	
 	public List<Vehiculo> buscarTodo(Vehiculo objeto) {
-		
+
 		return buscarTodo(objeto);
 	}
 

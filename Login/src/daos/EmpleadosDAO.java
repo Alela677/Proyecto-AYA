@@ -47,7 +47,7 @@ public class EmpleadosDAO {
 	public static List<String> consultarComboBox(String campoConsultar) {
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
-		Query query = sesion.createQuery("SELECT e."+campoConsultar+" FROM Empleados e");
+		Query query = sesion.createQuery("SELECT e." + campoConsultar + " FROM Empleados e");
 		List<String> resultadoDepartamento = query.list();
 		sesion.flush();
 		sesion.getTransaction().commit();
@@ -55,11 +55,11 @@ public class EmpleadosDAO {
 		return resultadoDepartamento;
 
 	}
-	
-	public static List<Empleados> consultarFiltro(String campoConsultar , String campo) {
+
+	public static List<Empleados> consultarFiltro(String campoConsultar, String campo) {
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
-		Query query = sesion.createQuery(" FROM Empleados e WHERE e."+campoConsultar+" = '"+campo+"' ");
+		Query query = sesion.createQuery(" FROM Empleados e WHERE e." + campoConsultar + " = '" + campo + "' ");
 		List<Empleados> resultadoDepartamento = query.list();
 		sesion.flush();
 		sesion.getTransaction().commit();
@@ -67,11 +67,11 @@ public class EmpleadosDAO {
 		return resultadoDepartamento;
 
 	}
-	
+
 	public static List<Empleados> consultarFiltroId(int campo) {
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
-		Query query = sesion.createQuery(" FROM Empleados e WHERE e.id= '"+campo+"'");
+		Query query = sesion.createQuery(" FROM Empleados e WHERE e.id= '" + campo + "'");
 		List<Empleados> resultadoDepartamento = query.list();
 		sesion.flush();
 		sesion.getTransaction().commit();
@@ -79,22 +79,32 @@ public class EmpleadosDAO {
 		return resultadoDepartamento;
 
 	}
-	public static List<Empleados> consultarNombre(String nombreBuscar) {	
+
+	public static List<Empleados> consultarNombre(String nombreBuscar) {
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
 		Query query = sesion.createQuery("FROM Empleados e WHERE e.nombre = '" + nombreBuscar + "'");
 		List<Empleados> listaEmpleados = query.list();
 		return listaEmpleados;
 	}
-	
-	public static List<Empleados> consultarApellido(String apellidos) {	
+
+	public static List<Empleados> consultarApellido(String apellidos) {
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
-		Query query = sesion.createQuery("FROM Empleados e WHERE e.apellidos LIKE  '%"+apellidos+"%'");
+		Query query = sesion.createQuery("FROM Empleados e WHERE e.apellidos LIKE  '%" + apellidos + "%'");
 		List<Empleados> listaEmpleados = query.list();
 		return listaEmpleados;
 	}
-	
+
+	public static void crearEmpleado(Empleados creado) {
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		sesion.save(creado);
+		sesion.flush();
+		sesion.getTransaction().commit();
+		sesion.close();
+	}
+
 	public static void main(String[] args) {
 
 //		Empleados e1 = new Empleados("LUISsss", "ROBLES GARCIA", "12345678A", "MECANICO", "TRABAJADOR", "2022/09/15",
@@ -116,9 +126,7 @@ public class EmpleadosDAO {
 //		sesion.getTransaction().commit();
 //
 //		sesion.close();
-	consultarFiltroId(13);
+		consultarFiltroId(13);
 	}
-
-	
 
 }

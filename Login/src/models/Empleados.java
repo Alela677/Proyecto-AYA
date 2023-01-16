@@ -2,7 +2,6 @@ package models;
 
 import java.io.Serializable;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,13 +36,15 @@ public class Empleados implements Serializable {
 	private String fechaBaja;
 	@Column(name = "imagen")
 	private String imagenEmpleado;
+	@Column(name = "contraseña")
+	private String contraseña;
 
 	public Empleados() {
 
 	}
 
 	public Empleados(String nombre, String apellidos, String dni, String departamento, String cargo, String fechaAlta,
-			String fechaBaja, String imagenEmpleado) {
+			String fechaBaja, String imagenEmpleado, String contraseña) {
 
 		super();
 
@@ -55,8 +56,8 @@ public class Empleados implements Serializable {
 		this.fechaAlta = fechaAlta;
 		this.fechaBaja = fechaBaja;
 		this.imagenEmpleado = imagenEmpleado;
+		this.contraseña = contraseña;
 	}
-	
 
 	public String getImagenEmpleado() {
 		return imagenEmpleado;
@@ -134,11 +135,19 @@ public class Empleados implements Serializable {
 		return serialVersionUID;
 	}
 
+	public String getContraseña() {
+		return contraseña;
+	}
+
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+
 	@Override
 	public String toString() {
 		return "Empleados [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni
 				+ ", departamento=" + departamento + ", cargo=" + cargo + ", fechaAlta=" + fechaAlta + ", fechaBaja="
-				+ fechaBaja + "]";
+				+ fechaBaja + ", imagenEmpleado=" + imagenEmpleado + ", contraseña=" + contraseña + "]";
 	}
 
 }
