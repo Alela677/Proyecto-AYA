@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import models.Empleados;
 
@@ -52,6 +53,10 @@ public class EmpleadoC implements Initializable {
 	@FXML
 	private Button buttonEditar;
 
+	@FXML
+    private Circle circulo;
+
+	
 	@FXML
 	void editarEmpleado(MouseEvent event) {
 
@@ -103,38 +108,11 @@ public class EmpleadoC implements Initializable {
 		txtDepartamento.setText(empleados.getDepartamento());
 		txtCargo.setText(empleados.getCargo());
 		txtFechaAlta.setText(String.valueOf(empleados.getFechaAlta()));
-		Image imagen = new Image(getClass().getResourceAsStream("/images/" + empleados.getImagenEmpleado()));
+		Image imagen = new Image("imagen"+"/"+ empleados.getImagenEmpleado());
 		img.setImage(imagen);
-
+		img.setVisible(false);
+		circulo.setFill(new ImagePattern(imagen));
 		
-		if (imagen != null) {
-            double w = 0;
-            double h = 0;
-
-            double ratioX = img.getFitWidth() / imagen.getWidth();
-            double ratioY = img.getFitHeight() / imagen.getHeight();
-
-            double reducCoeff = 0;
-            if(ratioX >= ratioY) {
-                reducCoeff = ratioY;
-            } else {
-                reducCoeff = ratioX;
-            }
-
-            w = imagen.getWidth() * reducCoeff;
-            h = imagen.getHeight() * reducCoeff;
-
-            img.setX((img.getFitWidth() - w) / 2);
-            img.setY((img.getFitHeight() - h) / 2);
-
-        }
-		Circle clipShape = new Circle();
-		clipShape.setCenterX(110);
-		clipShape.setCenterY(100);
-		clipShape.setRadius(70);
-
-		
-		img.setClip(clipShape);
 	}
 
 	@Override

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
@@ -18,11 +18,6 @@
             <Font name="Calibri" size="32.0" />
          </font>
       </Label>
-      <ImageView fx:id="img" fitHeight="189.0" fitWidth="234.0" layoutX="97.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-         <cursor>
-            <Cursor fx:constant="NONE" />
-         </cursor>
-      </ImageView>
       <Button fx:id="buttonEliminar" layoutX="953.0" layoutY="155.0" mnemonicParsing="false" onAction="#eliminaEmpleados" prefHeight="25.0" prefWidth="83.0" styleClass="botones" stylesheets="@../estilos/botones.css" text="Eliminar" />
       <Label layoutX="337.0" layoutY="14.0" prefHeight="17.0" prefWidth="83.0" text="Nombre">
          <font>
@@ -61,6 +56,8 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Circle fx:id="circulo" fill="DODGERBLUE" layoutX="190.0" layoutY="100.0" radius="79.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutX="90.0" layoutY="-109.0" pickOnBounds="true" preserveRatio="true" />
    </children>
    <effect>
       <DropShadow />

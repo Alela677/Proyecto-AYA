@@ -3,6 +3,7 @@ package controllers;
 import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
+
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -26,6 +27,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import models.Empleados;
+import utils.GuardarImagen;
 
 public class CrearEmpleadoC implements Initializable {
 	final FileChooser fileChooser = new FileChooser();
@@ -60,7 +62,7 @@ public class CrearEmpleadoC implements Initializable {
 	private ComboBox<String> comboCargo;
 
 	@FXML
-	void buscarImagen(MouseEvent event) {
+	void buscarImagen(MouseEvent event) throws Exception {
 		JFileChooser fc = new JFileChooser(); // Creamos un nuevo objeto JFileChooser
 		int seleccion = fc.showOpenDialog(this.nombreImagen); // Abrimos el JFileChooser y guardamos el resultado en
 																// seleccion
@@ -70,6 +72,7 @@ public class CrearEmpleadoC implements Initializable {
 			if (fichero.getName().contains(".jpg") || fichero.getName().contains(".png")
 					|| fichero.getName().contains(".jpeg")) {
 				txtArchivoImg.setText(fichero.getName());
+				GuardarImagen.guardarImagen(fichero);
 			}
 
 		}
@@ -96,7 +99,7 @@ public class CrearEmpleadoC implements Initializable {
 	}
 
 	@FXML
-	void crearEmpleado(MouseEvent event) throws IOException {
+	void crearEmpleado(MouseEvent event) throws Exception {
 		String nombre = txtNombre.getText();
 		String apellidos = txtApellidos.getText();
 		String dni = txtDni.getText();
@@ -105,8 +108,10 @@ public class CrearEmpleadoC implements Initializable {
 		String fechaAlta = String.valueOf(boxFechaAlta.getValue());
 		String imagen = txtArchivoImg.getText();
 		String contraseña = txtContraseña.getText();
+
 		Empleados nuevoEmpleado = new Empleados(nombre, apellidos, dni, departamento, cargo, fechaAlta, null, imagen,
 				contraseña);
+
 		EmpleadosDAO.crearEmpleado(nuevoEmpleado);
 		actualizarPagina();
 	}

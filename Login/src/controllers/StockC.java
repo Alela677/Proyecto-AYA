@@ -1,6 +1,5 @@
 package controllers;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,9 +16,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
+
 import models.Vehiculo;
 import utils.GridpanelVehiculos;
 
@@ -429,13 +426,6 @@ public class StockC implements Initializable {
 		} catch (IOException e) {
 			System.out.println("ERROR: NO SE PUDO INICIALIZAR EL GRIDPANE");
 		}
-
-		String path = "music/tokyo.mp3";
-		Media media = new Media(new File(path).toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(media);
-		mediaPlayer.setAutoPlay(true);
-		MediaView mediaView = new MediaView(mediaPlayer);
-		borderPaneStock.setBottom(mediaView);
 
 	}
 
