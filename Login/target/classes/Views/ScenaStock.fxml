@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -31,45 +32,7 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <MenuButton fx:id="btnColores" layoutX="22.0" layoutY="138.0" mnemonicParsing="false" prefWidth="150.0" styleClass="botones" stylesheets="@../estilos/botones.css" text="Colores">
-        <items>
-          <MenuItem fx:id="itemAzul" mnemonicParsing="false" onAction="#verVehiculosAzules" text="Azul" />
-            <MenuItem fx:id="itemRojo" mnemonicParsing="false" onAction="#verVehiculosRojos" text="Rojo" />
-            <MenuItem fx:id="itemVerde" mnemonicParsing="false" onAction="#verVehiculosVerde" text="Verde" />
-            <MenuItem fx:id="itemGris" mnemonicParsing="false" onAction="#verVehiculosGris" text="Gris" />
-            <MenuItem fx:id="itemNegro" mnemonicParsing="false" onAction="#verVehiculosNegro" text="Negro" />
-        </items>
-         <font>
-            <Font size="15.0" />
-         </font>
-      </MenuButton>
-      <MenuButton fx:id="btnColores1" layoutX="22.0" layoutY="183.0" mnemonicParsing="false" prefWidth="150.0" styleClass="botones" stylesheets="@../estilos/botones.css" text="Marca">
-         <items>
-            <MenuItem fx:id="itemSeat" mnemonicParsing="false" onAction="#verVehiculosSeat" text="SEAT" />
-            <MenuItem fx:id="itemBMW" mnemonicParsing="false" onAction="#verVehiculosBMW" text="BMW" />
-            <MenuItem fx:id="itemCupra" mnemonicParsing="false" onAction="#verVehiculosCupra" text="CUPRA" />
-            <MenuItem fx:id="itemAudi" mnemonicParsing="false" onAction="#verVehiculosAudi" text="AUDI" />
-            <MenuItem fx:id="itemKia" mnemonicParsing="false" onAction="#verVehiculosKia" text="KIA" />
-            <MenuItem fx:id="itemFord" mnemonicParsing="false" onAction="#verVehiculosFord" text="FORD" />
-         </items>
-         <font>
-            <Font size="15.0" />
-         </font>
-      </MenuButton>
-      <MenuButton fx:id="btnColores11" layoutX="21.0" layoutY="226.0" mnemonicParsing="false" prefWidth="150.0" styleClass="botones" stylesheets="@../estilos/botones.css" text="Modelo">
-         <items>
-            <MenuItem fx:id="itemIbiza" mnemonicParsing="false" onAction="#verVehiculosIbiza" text="IBIZA" />
-            <MenuItem fx:id="itemA3" mnemonicParsing="false" onAction="#verVehiculosA3" text="A3" />
-            <MenuItem fx:id="itemUrbaR" mnemonicParsing="false" onAction="#verVehiculosUrbanR" text="URBAN REBEL" />
-            <MenuItem fx:id="itemI7" mnemonicParsing="false" onAction="#verVehiculosI7" text="I7" />
-            <MenuItem fx:id="itemRio" mnemonicParsing="false" onAction="#verVehiculosRio" text="RIO" />
-            <MenuItem fx:id="itemFocus" mnemonicParsing="false" onAction="#verVehiculosFocus" text="FOCUS" />
-         </items>
-         <font>
-            <Font size="15.0" />
-         </font>
-      </MenuButton>
-      <MenuButton fx:id="btnColores111" layoutX="21.0" layoutY="272.0" mnemonicParsing="false" prefWidth="150.0" styleClass="botones" stylesheets="@../estilos/botones.css" text="Precio">
+      <MenuButton fx:id="btnColores111" layoutX="21.0" layoutY="357.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" styleClass="botones" stylesheets="@../estilos/botones.css" text="Precio">
          <items>
             <MenuItem fx:id="itemMenosDiez" mnemonicParsing="false" onAction="#verVehiculosMenosVeinte" text="- 20.000" />
             <MenuItem fx:id="itemEntre" mnemonicParsing="false" onAction="#verVehiculosEntre" text="20.000 - 50.000" />
@@ -79,5 +42,28 @@
             <Font size="15.0" />
          </font>
       </MenuButton>
+      <Label layoutX="22.0" layoutY="136.0" text="Marca">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="199.0" text="Modelo">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="267.0" text="Color">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboMarca" layoutX="21.0" layoutY="163.0" onAction="#buscarPorMarca" prefWidth="150.0" promptText="Marca" styleClass="botones" stylesheets="@../estilos/botones.css" />
+      <ComboBox fx:id="comboModelo" layoutX="21.0" layoutY="226.0" onAction="#buscarporModelo" prefWidth="150.0" promptText="Modelo" styleClass="botones" stylesheets="@../estilos/botones.css" />
+      <ComboBox fx:id="comboColor" layoutX="21.0" layoutY="294.0" onAction="#buscarPorColor" prefWidth="150.0" promptText="Color" styleClass="botones" stylesheets="@../estilos/botones.css" />
+      <Label layoutX="24.0" layoutY="330.0" text="Precio">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

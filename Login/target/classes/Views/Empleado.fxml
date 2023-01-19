@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1059.0" style="-fx-background-color: lightblue lightblue;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EmpleadoC">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1059.0" style="-fx-background-color: lightblue lightblue;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EmpleadoC">
    <children>
       <Line endX="-38.0" endY="144.99998474121094" layoutX="131.0" layoutY="55.0" startX="-38.0" startY="-55.0" />
       <Label fx:id="lblID" contentDisplay="CENTER" layoutX="22.0" layoutY="80.0" prefHeight="49.0" prefWidth="57.0">
@@ -18,7 +18,7 @@
             <Font name="Calibri" size="32.0" />
          </font>
       </Label>
-      <Button fx:id="buttonEliminar" layoutX="953.0" layoutY="155.0" mnemonicParsing="false" onAction="#eliminaEmpleados" prefHeight="25.0" prefWidth="83.0" styleClass="botones" stylesheets="@../estilos/botones.css" text="Eliminar" />
+      <Button fx:id="buttonEliminar" layoutX="953.0" layoutY="155.0" mnemonicParsing="false" onAction="#eliminaEmpleados" prefHeight="25.0" prefWidth="83.0" styleClass="botonesMenu" stylesheets="@../estilos/botones.css" text="Eliminar" />
       <Label layoutX="337.0" layoutY="14.0" prefHeight="17.0" prefWidth="83.0" text="Nombre">
          <font>
             <Font size="18.0" />
@@ -49,7 +49,7 @@
          </font>
       </Label>
       <TextField fx:id="txtFechaAlta" layoutX="766.0" layoutY="107.0" prefHeight="25.0" prefWidth="190.0" />
-      <Button fx:id="buttonEditar" layoutX="858.0" layoutY="155.0" mnemonicParsing="false" onMousePressed="#editarEmpleado" prefHeight="25.0" prefWidth="83.0" styleClass="botones" stylesheets="@../estilos/botones.css" text="Editar" />
+      <Button fx:id="buttonEditar" layoutX="858.0" layoutY="155.0" mnemonicParsing="false" onMousePressed="#editarEmpleado" prefHeight="25.0" prefWidth="83.0" styleClass="botonesMenu" stylesheets="@../estilos/botones.css" text="Editar" />
       <TextField fx:id="txtDNI" layoutX="766.0" layoutY="41.0" prefHeight="25.0" prefWidth="190.0" />
       <Label layoutX="766.0" layoutY="14.0" prefHeight="27.0" prefWidth="40.0" text="DNI">
          <font>

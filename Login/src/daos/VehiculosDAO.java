@@ -18,6 +18,7 @@ public class VehiculosDAO {
 
 	public static List<Vehiculo> consultaVehiculos() {
 		Session sesion = sf.openSession();
+		sesion.beginTransaction();
 		org.hibernate.Query query = sesion.createQuery("FROM Vehiculo");
 		List<Vehiculo> listaVehiculos = query.list();
 		sesion.close();
@@ -29,27 +30,21 @@ public class VehiculosDAO {
 		return buscarTodo(objeto);
 	}
 
-	public static List<Vehiculo> vehiculosPorColor(String color) {
-
+	public static List<Vehiculo> filtrarVehiculos(String campo, String valor) {
 		Session sesion = sf.openSession();
-		Query query = sesion.createQuery("FROM Vehiculo v WHERE v.color = '" + color + "'");
-		List<Vehiculo> listaResultado = query.list();
-		return listaResultado;
-
+		sesion.beginTransaction();
+		Query query = sesion.createQuery("FROM Vehiculo v WHERE v." + campo + " = '" + valor + "'  ");
+		List<Vehiculo> listaVehiculos = query.list();
+		sesion.close();
+		return listaVehiculos;
 	}
 
-	public static List<Vehiculo> vehiculosPorMarca(String marca) {
+	public static List<String> vehiculosRellenarCampos(String campo) {
 		Session sesion = sf.openSession();
-		Query query = sesion.createQuery("FROM Vehiculo v WHERE v.marca = '" + marca + "'");
-		List<Vehiculo> listaResultado = query.list();
-		return listaResultado;
-
-	}
-
-	public static List<Vehiculo> vehiculosPorModelo(String modelo) {
-		Session sesion = sf.openSession();
-		Query query = sesion.createQuery("FROM Vehiculo v WHERE v.modelo = '" + modelo + "'");
-		List<Vehiculo> listaResultado = query.list();
+		sesion.beginTransaction();
+		Query query = sesion.createQuery("SELECT v." + campo + " FROM Vehiculo v ");
+		List<String> listaResultado = query.list();
+		sesion.close();
 		return listaResultado;
 
 	}
@@ -57,8 +52,10 @@ public class VehiculosDAO {
 	public static List<Vehiculo> menorVeinte() {
 
 		Session sesion = sf.openSession();
+		sesion.beginTransaction();
 		Query query = sesion.createQuery("FROM Vehiculo v WHERE v.precio < '20000'");
 		List<Vehiculo> listaResultado = query.list();
+		sesion.close();
 		return listaResultado;
 
 	}
@@ -66,8 +63,10 @@ public class VehiculosDAO {
 	public static List<Vehiculo> mayorCincuenta() {
 
 		Session sesion = sf.openSession();
+		sesion.beginTransaction();
 		Query query = sesion.createQuery("FROM Vehiculo v WHERE v.precio > '50000'");
 		List<Vehiculo> listaResultado = query.list();
+		sesion.close();
 		return listaResultado;
 
 	}
@@ -75,8 +74,10 @@ public class VehiculosDAO {
 	public static List<Vehiculo> entreVeinteCincuenta() {
 
 		Session sesion = sf.openSession();
+		sesion.beginTransaction();
 		Query query = sesion.createQuery("FROM Vehiculo v WHERE v.precio between '20000' AND '50000'");
 		List<Vehiculo> listaResultado = query.list();
+		sesion.close();
 		return listaResultado;
 
 	}

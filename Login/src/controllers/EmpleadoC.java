@@ -1,5 +1,8 @@
 package controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -99,7 +102,7 @@ public class EmpleadoC implements Initializable {
 
 	}
 
-	public void setDatos(Empleados empleados) {
+	public void setDatos(Empleados empleados) throws FileNotFoundException {
 		prueba = empleados;
 		lblID.setText(String.valueOf(empleados.getId()));
 		txtNombre.setText(empleados.getNombre());
@@ -108,7 +111,7 @@ public class EmpleadoC implements Initializable {
 		txtDepartamento.setText(empleados.getDepartamento());
 		txtCargo.setText(empleados.getCargo());
 		txtFechaAlta.setText(String.valueOf(empleados.getFechaAlta()));
-		Image imagen = new Image("imagen"+"/"+ empleados.getImagenEmpleado());
+		Image imagen = new Image(new FileInputStream("imagenes"+"/"+empleados.getImagenEmpleado()));
 		img.setImage(imagen);
 		img.setVisible(false);
 		circulo.setFill(new ImagePattern(imagen));

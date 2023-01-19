@@ -19,10 +19,7 @@ public class GuardarImagen {
 			ext = i > 0 ? fileName.substring(i + 1) : "";
 		}
 
-		System.out.println(ext);
-
 		BufferedImage leerImagen = ImageIO.read(fichero);
-		System.out.println("Imagen leida");
 
 		BufferedImage output = new BufferedImage(leerImagen.getWidth(), leerImagen.getHeight(), leerImagen.getType());
 
@@ -32,16 +29,14 @@ public class GuardarImagen {
 				leerImagen.getHeight(), null);
 		g2d.dispose();
 
-		
-		File ficheroGuardar = new File("imagen" +"/"+ fileName);
-		System.out.println(ficheroGuardar.toString());
-		
+		File ficheroGuardar = new File("imagenes/" + fileName);
+
 		if (!ficheroGuardar.exists()) {
 			ficheroGuardar.mkdir();
 			ImageIO.write(leerImagen, ext, ficheroGuardar);
 		}
-	
-			ImageIO.write(leerImagen, ext, ficheroGuardar);
+
+		ImageIO.write(leerImagen, ext, ficheroGuardar);
 
 		System.out.println("Imagen guardada");
 	}

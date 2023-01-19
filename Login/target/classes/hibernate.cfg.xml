@@ -10,10 +10,11 @@
 		<property name="hibernate.show_sql">true</property>
 		<!-- <property name="hibernate.hbm2ddl.auto">create</property> -->
 
-		<mapping class="models.Usuarios"/>
-		<mapping class="models.Vehiculo"/>
-		<mapping class="models.Empleados"/>
-
+		<mapping class="models.Usuarios" />
+		<mapping class="models.Vehiculo" />
+		<mapping class="models.Empleados" />
+		<mapping class="models.Ventas" />
+		<mapping class="models.Reparaciones" />
 
 	</session-factory>
 </hibernate-configuration>

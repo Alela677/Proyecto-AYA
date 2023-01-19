@@ -19,8 +19,8 @@ public class VentaC {
 	private Pane paneResumen;
 
 	@FXML
-	void vistaResumen(MouseEvent event) {
-
+	void vistaResumen(MouseEvent event) throws IOException {
+		escenaResumenVentas();
 	}
 
 	@FXML
@@ -34,6 +34,12 @@ public class VentaC {
 		AnchorPane root = loade.load();
 		LoginController.root.setCenter(root);
 
+	}
+
+	private void escenaResumenVentas() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SceneResumenVentas.fxml"));
+		AnchorPane root = loader.load();
+		LoginController.root.setCenter(root);
 	}
 
 }

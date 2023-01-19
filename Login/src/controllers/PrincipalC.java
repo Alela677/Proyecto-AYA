@@ -1,15 +1,24 @@
 
 package controllers;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.zip.InflaterInputStream;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -40,6 +49,12 @@ public class PrincipalC {
 
 	@FXML
 	private MenuItem stockMenuButton;
+
+	@FXML
+	private MenuItem verResumenVentas;
+
+	@FXML
+	private Button buttonApagar;
 
 	@FXML
 	void mostrarStock(ActionEvent event) throws Exception {
@@ -89,4 +104,29 @@ public class PrincipalC {
 		AnchorPane root = loader.load();
 		borderPane.setCenter(root);
 	}
+
+	private void escenaResumenVentas() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SceneResumenVentas.fxml"));
+		AnchorPane root = loader.load();
+		borderPane.setCenter(root);
+	}
+
+	@FXML
+	void escenaResumenVentas(ActionEvent event) throws IOException {
+		escenaResumenVentas();
+	}
+	
+	@FXML
+    void verGanancias(ActionEvent event) {
+
+    }
+
+    @FXML
+	void verReparaciones(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SceneReparaciones.fxml"));
+    	AnchorPane root = loader.load();
+    	borderPane.setCenter(root);
+    }
+	
+
 }

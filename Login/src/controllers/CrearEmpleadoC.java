@@ -100,6 +100,7 @@ public class CrearEmpleadoC implements Initializable {
 
 	@FXML
 	void crearEmpleado(MouseEvent event) throws Exception {
+
 		String nombre = txtNombre.getText();
 		String apellidos = txtApellidos.getText();
 		String dni = txtDni.getText();
@@ -109,6 +110,9 @@ public class CrearEmpleadoC implements Initializable {
 		String imagen = txtArchivoImg.getText();
 		String contraseña = txtContraseña.getText();
 
+		if (imagen.isEmpty()) {
+			imagen = "user.jpeg";
+		}
 		Empleados nuevoEmpleado = new Empleados(nombre, apellidos, dni, departamento, cargo, fechaAlta, null, imagen,
 				contraseña);
 
@@ -124,9 +128,10 @@ public class CrearEmpleadoC implements Initializable {
 	}
 
 	private void rellenarCamposDepartamento() {
-		List<String> departamentos = EmpleadosDAO.consultarComboBox("departamento");
-		departamentos = departamentos.stream().distinct().collect(Collectors.toList());
-		ObservableList<String> items = FXCollections.observableArrayList(departamentos);
+		
+		ObservableList<String> items = FXCollections.observableArrayList();
+		items.add("Ventas");
+		items.add("Mecanico");
 		comboDepartamento.setItems(items);
 	}
 

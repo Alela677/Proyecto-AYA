@@ -8,7 +8,7 @@ import org.hibernate.Session;
 import models.Usuarios;
 
 public class UsuariosDAO {
-	private static Session sesion = HibernateUtil.getSession();
+	private static Session sesion;
 
 	public static void main(String[] args) {
 

@@ -5,18 +5,21 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
+import daos.EmpleadosDAO;
 import daos.VehiculosDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-
 import models.Vehiculo;
 import utils.GridpanelVehiculos;
 
@@ -26,11 +29,14 @@ public class StockC implements Initializable {
 	private VehiculosC controlador;
 	private GridPane nuevoGrid;
 	private GridpanelVehiculos grid = new GridpanelVehiculos();
+
+	int columna = 0;
+	int fila = 0;
 	// Lista de vehiculos
-	private List<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
+	private static List<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
 
 	// Lista de paneles
-	private List<AnchorPane> paneles = new ArrayList<AnchorPane>();
+	private static List<AnchorPane> paneles = new ArrayList<AnchorPane>();
 
 	@FXML
 	private BorderPane borderPaneStock;
@@ -42,138 +48,37 @@ public class StockC implements Initializable {
 	private GridPane gridVehiculo;
 
 	@FXML
-	private MenuButton btnColores;
+	private ComboBox<String> comboMarca;
 
 	@FXML
-	private MenuItem itemAzul;
+	private ComboBox<String> comboModelo;
 
 	@FXML
-	private MenuItem itemRojo;
+	private ComboBox<String> comboColor;
 
 	@FXML
-	private MenuItem itemVerde;
+	void buscarPorColor(ActionEvent event) throws IOException {
+		limpiarLista();
+		vehiculos = VehiculosDAO.filtrarVehiculos("color", comboColor.getValue());
+		paneles = grid.crearPaneles(vehiculos);
+		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
+		borderPaneStock.setCenter(nuevoGrid);
+
+	}
 
 	@FXML
-	private MenuItem itemGris;
-
-	@FXML
-	private MenuItem itemNegro;
-
-	@FXML
-	private MenuItem itemSeat;
-
-	@FXML
-	private MenuItem itemBMW;
-
-	@FXML
-	private MenuItem itemCupra;
-
-	@FXML
-	private MenuItem itemAudi;
-
-	@FXML
-	private MenuItem itemKia;
-
-	@FXML
-	private MenuItem itemIbiza;
-
-	@FXML
-	private MenuItem itemA3;
-
-	@FXML
-	private MenuItem itemUrbaR;
-
-	@FXML
-	private MenuItem itemI7;
-
-	@FXML
-	private MenuItem itemRio;
-
-	@FXML
-	private MenuItem itemFocus;
-
-	@FXML
-	private MenuItem itemMenosDiez;
-
-	@FXML
-	private MenuItem itemEntre;
-
-	@FXML
-	private MenuItem itemMasCincuenta;
-
-	@FXML
-	private MenuItem itemFord;
-
-	@FXML
-	void verVehiculosFord(ActionEvent event) throws IOException {
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorMarca(itemFord.getText());
+	void buscarPorMarca(ActionEvent event) throws IOException {
+		limpiarLista();
+		vehiculos = VehiculosDAO.filtrarVehiculos("marca", comboMarca.getValue());
 		paneles = grid.crearPaneles(vehiculos);
 		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 		borderPaneStock.setCenter(nuevoGrid);
 	}
 
 	@FXML
-	void verVehiculosA3(ActionEvent event) throws IOException {
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorModelo(itemA3.getText());
-		paneles = grid.crearPaneles(vehiculos);
-		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
-		borderPaneStock.setCenter(nuevoGrid);
-	}
-
-	@FXML
-	void verVehiculosAudi(ActionEvent event) throws IOException {
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorMarca(itemAudi.getText());
-		paneles = grid.crearPaneles(vehiculos);
-		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
-		borderPaneStock.setCenter(nuevoGrid);
-	}
-
-	@FXML
-	void verVehiculosBMW(ActionEvent event) throws IOException {
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorMarca(itemBMW.getText());
-		paneles = grid.crearPaneles(vehiculos);
-		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
-		borderPaneStock.setCenter(nuevoGrid);
-	}
-
-	@FXML
-	void verVehiculosCupra(ActionEvent event) throws IOException {
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorMarca(itemCupra.getText());
+	void buscarporModelo(ActionEvent event) throws IOException {
+		limpiarLista();
+		vehiculos = VehiculosDAO.filtrarVehiculos("modelo", comboModelo.getValue());
 		paneles = grid.crearPaneles(vehiculos);
 		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 		borderPaneStock.setCenter(nuevoGrid);
@@ -182,73 +87,10 @@ public class StockC implements Initializable {
 	@FXML
 	void verVehiculosEntre(ActionEvent event) throws IOException {
 		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
+		limpiarLista();
 
 		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
 		vehiculos = VehiculosDAO.entreVeinteCincuenta();
-		paneles = grid.crearPaneles(vehiculos);
-		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
-		borderPaneStock.setCenter(nuevoGrid);
-	}
-
-	@FXML
-	void verVehiculosFocus(ActionEvent event) throws IOException {
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorModelo(itemFocus.getText());
-		paneles = grid.crearPaneles(vehiculos);
-		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
-		borderPaneStock.setCenter(nuevoGrid);
-	}
-
-	@FXML
-	void verVehiculosI7(ActionEvent event) throws IOException {
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorModelo(itemI7.getText());
-		paneles = grid.crearPaneles(vehiculos);
-		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
-		borderPaneStock.setCenter(nuevoGrid);
-	}
-
-	@FXML
-	void verVehiculosIbiza(ActionEvent event) throws IOException {
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorModelo(itemIbiza.getText());
-		paneles = grid.crearPaneles(vehiculos);
-		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
-		borderPaneStock.setCenter(nuevoGrid);
-	}
-
-	@FXML
-	void verVehiculosKia(ActionEvent event) throws IOException {
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorMarca(itemKia.getText());
 		paneles = grid.crearPaneles(vehiculos);
 		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 		borderPaneStock.setCenter(nuevoGrid);
@@ -257,12 +99,10 @@ public class StockC implements Initializable {
 	@FXML
 	void verVehiculosMasCincuenta(ActionEvent event) throws IOException {
 		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
+		limpiarLista();
 
 		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
+
 		vehiculos = VehiculosDAO.mayorCincuenta();
 		paneles = grid.crearPaneles(vehiculos);
 		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
@@ -272,138 +112,39 @@ public class StockC implements Initializable {
 	@FXML
 	void verVehiculosMenosVeinte(ActionEvent event) throws IOException {
 		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
+		limpiarLista();
 		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
+
 		vehiculos = VehiculosDAO.menorVeinte();
 		paneles = grid.crearPaneles(vehiculos);
 		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 		borderPaneStock.setCenter(nuevoGrid);
 	}
 
-	@FXML
-	void verVehiculosRio(ActionEvent event) throws IOException {
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorModelo(itemRio.getText());
-		paneles = grid.crearPaneles(vehiculos);
-		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
-		borderPaneStock.setCenter(nuevoGrid);
+	private void rellenarCamposMarca() {
+		List<String> cargos = VehiculosDAO.vehiculosRellenarCampos("marca");
+		cargos = cargos.stream().distinct().collect(Collectors.toList());
+		ObservableList<String> items = FXCollections.observableArrayList(cargos);
+		comboMarca.setItems(items);
 	}
 
-	@FXML
-	void verVehiculosSeat(ActionEvent event) throws IOException {
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorMarca(itemSeat.getText());
-		paneles = grid.crearPaneles(vehiculos);
-		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
-		borderPaneStock.setCenter(nuevoGrid);
+	private void rellenarCamposModelo() {
+		List<String> cargos = VehiculosDAO.vehiculosRellenarCampos("modelo");
+		cargos = cargos.stream().distinct().collect(Collectors.toList());
+		ObservableList<String> items = FXCollections.observableArrayList(cargos);
+		comboModelo.setItems(items);
 	}
 
-	@FXML
-	void verVehiculosUrbanR(ActionEvent event) throws IOException {
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorModelo(itemUrbaR.getText());
-		paneles = grid.crearPaneles(vehiculos);
-		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
-		borderPaneStock.setCenter(nuevoGrid);
+	private void rellenarCamposColor() {
+		List<String> cargos = VehiculosDAO.vehiculosRellenarCampos("color");
+		cargos = cargos.stream().distinct().collect(Collectors.toList());
+		ObservableList<String> items = FXCollections.observableArrayList(cargos);
+		comboColor.setItems(items);
 	}
 
-	@FXML
-	void verVehiculosGris(ActionEvent event) throws IOException {
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
+	private void limpiarLista() {
 		paneles.clear();
 		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorColor(itemGris.getText());
-		paneles = grid.crearPaneles(vehiculos);
-		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
-		borderPaneStock.setCenter(nuevoGrid);
-	}
-
-	@FXML
-	void verVehiculosNegro(ActionEvent event) throws IOException {
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorColor(itemNegro.getText());
-		paneles = grid.crearPaneles(vehiculos);
-		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
-		borderPaneStock.setCenter(nuevoGrid);
-	}
-
-	@FXML
-	void verVehiculosRojos(ActionEvent event) throws IOException {
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorColor(itemRojo.getText());
-		paneles = grid.crearPaneles(vehiculos);
-		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
-		borderPaneStock.setCenter(nuevoGrid);
-	}
-
-	@FXML
-	void verVehiculosVerde(ActionEvent event) throws IOException {
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorColor(itemVerde.getText());
-		paneles = grid.crearPaneles(vehiculos);
-		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
-		borderPaneStock.setCenter(nuevoGrid);
-	}
-
-	@FXML
-	void verVehiculosAzules(ActionEvent event) throws IOException {
-
-		// Antes de generar los nuevos vehiculos hay que limpiar ambas listas
-		paneles.clear();
-		vehiculos.clear();
-
-		// Repetimos el proceso cuando pulsamos el boton
-		int columna = 0;
-		int fila = 0;
-		vehiculos = VehiculosDAO.vehiculosPorColor(itemAzul.getText());
-		paneles = grid.crearPaneles(vehiculos);
-		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
-		borderPaneStock.setCenter(nuevoGrid);
-
 	}
 
 	/**
@@ -426,7 +167,9 @@ public class StockC implements Initializable {
 		} catch (IOException e) {
 			System.out.println("ERROR: NO SE PUDO INICIALIZAR EL GRIDPANE");
 		}
-
+		rellenarCamposModelo();
+		rellenarCamposMarca();
+		rellenarCamposColor();
 	}
 
 }
