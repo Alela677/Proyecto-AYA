@@ -9,6 +9,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import com.mysql.cj.x.protobuf.MysqlxNotice.SessionStateChanged;
+
 import models.Vehiculo;
 
 public class VehiculosDAO {
@@ -80,6 +82,14 @@ public class VehiculosDAO {
 		sesion.close();
 		return listaResultado;
 
+	}
+
+	public static long stock(String modelo) {
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		Query query = sesion.createQuery("SELECT COUNT(v.modelo) FROM Vehiculo v GROUP BY v.modelo");
+		long resultado = (long) query.uniqueResult();
+		return resultado;
 	}
 
 	public static void main(String[] args) {

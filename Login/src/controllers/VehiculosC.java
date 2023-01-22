@@ -1,5 +1,6 @@
 package controllers;
 
+import daos.VehiculosDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -32,12 +33,10 @@ public class VehiculosC {
 		vehiucloModelo.setText(vehiculo.getModelo());
 		vehiculoColor.setText(vehiculo.getColor());
 		vehiculoPrecio.setText(String.valueOf(vehiculo.getPrecio()));
-		vehiculoStock.setText(String.valueOf(vehiculo.getStock()));
-		Image imagen = new Image(getClass().getResourceAsStream("/images/"+vehiculo.getImagen()));
+		vehiculoStock.setText(String.valueOf(VehiculosDAO.stock(vehiculo.getModelo())));
+		Image imagen = new Image(getClass().getResourceAsStream("/images/" + vehiculo.getImagen()));
 		vehiculoImagen.setImage(imagen);
-		
-	}
 
-	
+	}
 
 }
