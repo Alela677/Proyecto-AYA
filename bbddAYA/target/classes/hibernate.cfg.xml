@@ -16,6 +16,7 @@
 		<mapping class="models.Cliente" />
 		<mapping class="models.Venta" />
 		<mapping class="models.Reparacion" />
+		<mapping class="models.Propuesta" />
 		
 		
 

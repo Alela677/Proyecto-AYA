@@ -22,7 +22,9 @@ public class Cliente {
 	private String direccion;
 	@Column
 	private String dni;
-
+	@Column
+	private int telefono;
+	
 	public Cliente() {
 		// TODO Auto-generated constructor stub
 	}
