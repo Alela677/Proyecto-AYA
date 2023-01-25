@@ -2,6 +2,7 @@ package models;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,35 +30,29 @@ public class Vehiculo implements Serializable {
 	@Column
 	private String color;
 	@Column
-<<<<<<< HEAD
 	private double precio;
-=======
-	private int precio;
->>>>>>> 66ae24b5bb24fe5fa454a4d2e927eb06a37831c7
 	@Column
 	private String matricula;
 	@Column
 	private String imagen;
 
-	@OneToOne
+	@OneToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "concesionario")
 	private Concesionario concesionario;
 
 	public Vehiculo() {
 	}
 
-<<<<<<< HEAD
-	public Vehiculo(String marca, String modelo, String color, double precio, int stock, String img) {
-=======
-	public Vehiculo(String marca, String modelo, String color, int precio, int stock, String img) {
->>>>>>> 66ae24b5bb24fe5fa454a4d2e927eb06a37831c7
+	public Vehiculo(int id, String marca, String modelo, String color, double precio, String matricula, String imagen) {
 		super();
-
+		this.id = id;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.color = color;
 		this.precio = precio;
-		this.imagen = img;
+		this.matricula = matricula;
+		this.imagen = imagen;
+
 	}
 
 	public String getImagen() {
@@ -94,14 +89,6 @@ public class Vehiculo implements Serializable {
 
 	public double getPrecio() {
 		return precio;
-	}
-
-<<<<<<< HEAD
-	public void setPrecio(double precio) {
-=======
-	public void setPrecio(int precio) {
->>>>>>> 66ae24b5bb24fe5fa454a4d2e927eb06a37831c7
-		this.precio = precio;
 	}
 
 	public Concesionario getConcesionario() {

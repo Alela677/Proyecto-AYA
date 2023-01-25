@@ -3,71 +3,87 @@ package dao;
 import java.util.List;
 
 import org.hibernate.Session;
-
 import interfaz.ComunesIn;
-import models.HibernateUtil;
 
 public class ComunesDAO<T> implements ComunesIn<T> {
-	
-	
-	
-	public ComunesDAO() {
+
+	/** Sesión de conexión a BD */
+	protected static Session session;
+
+	public ComunesDAO(Session session) {
 		super();
 
+		this.session = session;
 	}
 
+	/**
+	 * Metodo insert, que inserta un objeto en la base de datos
+	 */
 	@Override
-	public void insertar(T objeto) {
-		Session sesion = HibernateUtil.getSession();
-		sesion.beginTransaction();
-		sesion.save(objeto);
-		sesion.getTransaction().commit();
-		sesion.flush();
-		sesion.close();
+	public void insert(final T paramT) {
 
+		// Verificación de sesión abierta
+		if (!session.getTransaction().isActive()) {
+			session.getTransaction().begin();
+		}
+
+		// Inserta el objeto en la base de datos
+		session.save(paramT);
+		session.flush();
+
+		// Commit
+		session.getTransaction().commit();
 	}
 
+	/**
+	 * Metodo que modifica un objeto de la base de datos
+	 */
 	@Override
-	public void actualizar(T objeto) {
+	public void update(final T paramT) {
 
-		Session sesion = HibernateUtil.getSession();
-		sesion.beginTransaction();
-		sesion.saveOrUpdate(objeto);
-		sesion.getTransaction().commit();
-		sesion.flush();
-		sesion.close();
+		// Verificación de sesión abierta
+		if (!session.getTransaction().isActive()) {
+			session.getTransaction().begin();
+		}
+
+		// Updatea el objeto en la base de datos
+		session.saveOrUpdate(paramT);
+
+		// Commit
+		session.getTransaction().commit();
 	}
 
+	/**
+	 * Metodo que elimina un objeto de la base de datos
+	 */
 	@Override
-	public void borrar(T objeto) {
+	public void delete(final T paramT) {
 
-		Session sesion = HibernateUtil.getSession();
-		sesion.beginTransaction();
-		sesion.delete(objeto);
-		sesion.getTransaction().commit();
-		sesion.flush();
-		sesion.close();
+		// Verificación de sesión abierta
+		if (!session.getTransaction().isActive()) {
+			session.getTransaction().begin();
+		}
+
+		// Elimina el objeto
+		session.delete(paramT);
+
+		// Commit
+		session.getTransaction().commit();
 	}
 
+	/**
+	 * Metodo que lista todos los objetos de la base de datos
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<T> traerTodos(T objeto) {
+	public List<T> searchAll(String objeto) {
+		// Verificación de sesión abierta
+		if (!session.getTransaction().isActive()) {
+			session.getTransaction().begin();
+		}
 
-		Session sesion = HibernateUtil.getSession();
-		sesion.beginTransaction();
-
-		return sesion.createQuery("FROM " + objeto + "").list();
-	}
-
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public T buscarPorId(Long id) {
-		
-		Session sesion = HibernateUtil.getSession();
-		sesion.beginTransaction();
-		
-		return (T) sesion.get(this.getClass(), id);
+		// Devuelve todos los objetos
+		return session.createQuery("FROM " + objeto + "").list();
 	}
 
 }

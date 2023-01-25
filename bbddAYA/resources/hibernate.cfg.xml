@@ -8,11 +8,7 @@
 		<property name="connection.password">root</property>
 		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
 		<property name="hibernate.show_sql">true</property>
-<<<<<<< HEAD
-		<property name="hibernate.hbm2ddl.auto">create</property>
-=======
-		 <property name="hibernate.hbm2ddl.auto">create</property>
->>>>>>> 66ae24b5bb24fe5fa454a4d2e927eb06a37831c7
+		<!-- <property name="hibernate.hbm2ddl.auto">create</property> -->
 
 		<mapping class="models.Concesionario" />
 		<mapping class= "models.Vehiculo" />		

@@ -8,18 +8,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-<<<<<<< HEAD
+
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
-=======
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ManyToAny;
->>>>>>> 66ae24b5bb24fe5fa454a4d2e927eb06a37831c7
 
 @Entity
 @Table(name = "Empleados")
@@ -171,7 +168,8 @@ public class Empleados implements Serializable {
 	@Override
 	public String toString() {
 		return "Empleados [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni
-				+ ", departamento=" + departamento + ", cargo=" + cargo + ", fechaAlta=" + fechaAlta + ",imagenEmpleado=" + imagenEmpleado + ", contraseña=" + contraseña + "]";
+				+ ", departamento=" + departamento + ", cargo=" + cargo + ", fechaAlta=" + fechaAlta
+				+ ",imagenEmpleado=" + imagenEmpleado + ", contraseña=" + contraseña + "]";
 	}
 
 }

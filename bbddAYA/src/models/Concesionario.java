@@ -1,24 +1,19 @@
 package models;
 
 import java.io.Serializable;
-<<<<<<< HEAD
 
-=======
 import java.util.List;
 
-import javax.persistence.CascadeType;
->>>>>>> 66ae24b5bb24fe5fa454a4d2e927eb06a37831c7
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-<<<<<<< HEAD
 
-=======
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
->>>>>>> 66ae24b5bb24fe5fa454a4d2e927eb06a37831c7
+
+
 import javax.persistence.Table;
 
 @Entity

@@ -3,16 +3,30 @@ package interfaz;
 import java.util.List;
 
 public interface ComunesIn<T> {
-	
 
-	public void insertar(final T objeto);
+	/**
+	 * Inserta un objeto a la base de datos
+	 * 
+	 * @param paramT Objeto que queremos insertar en la base de datos
+	 */
+	public void insert(final T paramT);
 
-	public void actualizar(final T objeto);
+	/**
+	 * Actualiza un objeto de la base de datos
+	 * 
+	 * @param paramT Objeto que queremos actualizar
+	 */
+	public void update(final T paramT);
 
-	public void borrar(final T objeto);
+	/**
+	 * Elimina un objeto de la base de datos
+	 * 
+	 * @param paramT Objeto de la base de datos que queremos eliminar
+	 */
+	public void delete(final T paramT);
 
-	public List<T> traerTodos(final T objeto);
-
-	public T buscarPorId(Long id);
-
+	/**
+	 * Metodo que lista todos los objetos de la base de datos
+	 */
+	List<T> searchAll(String objeto);
 }

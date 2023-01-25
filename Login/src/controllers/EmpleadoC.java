@@ -24,7 +24,7 @@ import javafx.scene.shape.Circle;
 import models.Empleados;
 
 public class EmpleadoC implements Initializable {
-	private Empleados prueba = null;
+	private Empleados empleado = null;
 
 	@FXML
 	private Label lblID;
@@ -57,9 +57,8 @@ public class EmpleadoC implements Initializable {
 	private Button buttonEditar;
 
 	@FXML
-    private Circle circulo;
+	private Circle circulo;
 
-	
 	@FXML
 	void editarEmpleado(MouseEvent event) {
 
@@ -74,14 +73,14 @@ public class EmpleadoC implements Initializable {
 
 		} else if (buttonEditar.getText().equals("Guardar")) {
 
-			prueba.setNombre(txtNombre.getText());
-			prueba.setApellidos(txtApellidos.getText());
-			prueba.setDepartamento(txtDepartamento.getText());
-			prueba.setCargo(txtCargo.getText());
-			prueba.setDni(txtDNI.getText());
-			prueba.setFechaAlta(txtFechaAlta.getText());
+			empleado.setNombre(txtNombre.getText());
+			empleado.setApellidos(txtApellidos.getText());
+			empleado.setDepartamento(txtDepartamento.getText());
+			empleado.setCargo(txtCargo.getText());
+			empleado.setDni(txtDNI.getText());
+			empleado.setFechaAlta(txtFechaAlta.getText());
 
-			EmpleadosDAO.actualizarEmpleado(prueba);
+			EmpleadosDAO.actualizarEmpleado(empleado);
 
 			buttonEditar.setText("Editar");
 			txtNombre.setEditable(false);
@@ -97,13 +96,13 @@ public class EmpleadoC implements Initializable {
 
 	@FXML
 	void eliminaEmpleados(ActionEvent event) throws IOException {
-		EmpleadosDAO.eliminaEmpleado(prueba);
+		EmpleadosDAO.eliminaEmpleado(empleado);
 		actualizarPagina();
 
 	}
 
 	public void setDatos(Empleados empleados) throws FileNotFoundException {
-		prueba = empleados;
+		empleado = empleados;
 		lblID.setText(String.valueOf(empleados.getId()));
 		txtNombre.setText(empleados.getNombre());
 		txtApellidos.setText(empleados.getApellidos());
@@ -111,11 +110,11 @@ public class EmpleadoC implements Initializable {
 		txtDepartamento.setText(empleados.getDepartamento());
 		txtCargo.setText(empleados.getCargo());
 		txtFechaAlta.setText(String.valueOf(empleados.getFechaAlta()));
-		Image imagen = new Image(new FileInputStream("imagenes"+"/"+empleados.getImagenEmpleado()));
+		Image imagen = new Image(new FileInputStream("imagenes" + "/" + empleados.getImagenEmpleado()));
 		img.setImage(imagen);
 		img.setVisible(false);
 		circulo.setFill(new ImagePattern(imagen));
-		
+
 	}
 
 	@Override
@@ -129,7 +128,7 @@ public class EmpleadoC implements Initializable {
 		txtDNI.setEditable(false);
 
 	}
-	
+
 	private void actualizarPagina() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SceneVerEmpleados.fxml"));
 		AnchorPane root = loader.load();

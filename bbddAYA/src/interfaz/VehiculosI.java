@@ -2,13 +2,17 @@ package interfaz;
 
 import java.util.List;
 
-public interface VehiculosI<T> {
+import models.Vehiculo;
 
-	public List<T> consultaColumna(String columna);
+public interface VehiculosI {
 
-	public List<T> consultarPrecio(char comparacion, int precio);
+	List<Vehiculo> consultaColumna(String columna);
 
-	public List<T> consultarPrecioEntre(double precio1, double precio2);
+	List<Vehiculo> consultarPrecio(char comparacion, int precio);
 
-	public List<T> filtrarPorColumna(String columna, String valor);
+	List<Vehiculo> consultarPrecioEntre(double precio1, double precio2);
+
+	List<Vehiculo> filtrarPorColumna(String columna, String valor);
+	
+
 }

@@ -31,15 +31,24 @@ public class Reparacion {
 	@JoinColumn
 	private Vehiculo vehiculo;
 
+	@Column
+	private String fecha;
+
 	public Reparacion() {
-		// TODO Auto-generated constructor stub
+
 	}
 
-<<<<<<< HEAD
-	
-	
-=======
->>>>>>> 66ae24b5bb24fe5fa454a4d2e927eb06a37831c7
+	public Reparacion(int idReparacion, String pieza, double coste, Empleados empleado, Vehiculo vehiculo,
+			String fecha) {
+		super();
+		this.idReparacion = idReparacion;
+		this.pieza = pieza;
+		this.coste = coste;
+		this.empleado = empleado;
+		this.vehiculo = vehiculo;
+		this.fecha = fecha;
+	}
+
 	public int getIdReparacion() {
 		return idReparacion;
 	}
@@ -62,6 +71,12 @@ public class Reparacion {
 
 	public void setVehiculo(Vehiculo vehiculo) {
 		this.vehiculo = vehiculo;
+	}
+
+	@Override
+	public String toString() {
+		return "Reparacion [idReparacion=" + idReparacion + ", pieza=" + pieza + ", coste=" + coste + ", empleado="
+				+ empleado + ", vehiculo=" + vehiculo + ", fecha=" + fecha + "]";
 	}
 
 }
