@@ -29,7 +29,11 @@ public class Vehiculo implements Serializable {
 	@Column
 	private String color;
 	@Column
+<<<<<<< HEAD
+	private double precio;
+=======
 	private int precio;
+>>>>>>> 66ae24b5bb24fe5fa454a4d2e927eb06a37831c7
 	@Column
 	private String matricula;
 	@Column
@@ -42,7 +46,11 @@ public class Vehiculo implements Serializable {
 	public Vehiculo() {
 	}
 
+<<<<<<< HEAD
+	public Vehiculo(String marca, String modelo, String color, double precio, int stock, String img) {
+=======
 	public Vehiculo(String marca, String modelo, String color, int precio, int stock, String img) {
+>>>>>>> 66ae24b5bb24fe5fa454a4d2e927eb06a37831c7
 		super();
 
 		this.marca = marca;
@@ -88,7 +96,11 @@ public class Vehiculo implements Serializable {
 		return precio;
 	}
 
+<<<<<<< HEAD
+	public void setPrecio(double precio) {
+=======
 	public void setPrecio(int precio) {
+>>>>>>> 66ae24b5bb24fe5fa454a4d2e927eb06a37831c7
 		this.precio = precio;
 	}
 

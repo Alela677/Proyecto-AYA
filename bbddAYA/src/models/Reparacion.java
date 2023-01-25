@@ -35,6 +35,11 @@ public class Reparacion {
 		// TODO Auto-generated constructor stub
 	}
 
+<<<<<<< HEAD
+	
+	
+=======
+>>>>>>> 66ae24b5bb24fe5fa454a4d2e927eb06a37831c7
 	public int getIdReparacion() {
 		return idReparacion;
 	}

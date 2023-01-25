@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
+Built-By: alumnado
+Build-Jdk: 17.0.4.1
+=======
 Built-By: Alejandro
 Build-Jdk: 17.0.3
+>>>>>>> 66ae24b5bb24fe5fa454a4d2e927eb06a37831c7
 Created-By: Maven Integration for Eclipse
 
