@@ -1,19 +1,16 @@
 package models;
 
 import java.io.Serializable;
-
 import java.util.List;
+import java.util.Set;
 
-
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
-
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,8 +30,31 @@ public class Concesionario implements Serializable {
 	@Column
 	private String localidad;
 
+	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+	private Set<Empleados> empleados;
+
+	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+	private Set<Vehiculo> vehiculos;
+
 	public Concesionario() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Concesionario(int idConcesionario, String nombre, String localidad, Set<Empleados> empleados) {
+		super();
+		this.idConcesionario = idConcesionario;
+		this.nombre = nombre;
+		this.localidad = localidad;
+		this.empleados = empleados;
+
+	}
+
+	public Set<Vehiculo> getVehiculos() {
+		return vehiculos;
+	}
+
+	public void setVehiculos(Set<Vehiculo> vehiculos) {
+		this.vehiculos = vehiculos;
 	}
 
 	public int getIdConcesionario() {
@@ -63,6 +83,20 @@ public class Concesionario implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Set<Empleados> getEmpleados() {
+		return empleados;
+	}
+
+	public void setEmpleados(Set<Empleados> empleados) {
+		this.empleados = empleados;
+	}
+
+	@Override
+	public String toString() {
+		return "Concesionario [idConcesionario=" + idConcesionario + ", nombre=" + nombre + ", localidad=" + localidad
+				+ "]";
 	}
 
 }

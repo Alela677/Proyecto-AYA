@@ -1,15 +1,23 @@
 package models;
 
+import java.io.Serializable;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Clientes")
-public class Cliente {
+@Table(name = "Cliente")
+public class Cliente implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +32,12 @@ public class Cliente {
 	private String dni;
 	@Column
 	private int telefono;
+
+	@OneToMany(mappedBy = "id", cascade = { CascadeType.ALL })
+	private Set<Vehiculo> vehiculos;
+
+	@OneToMany(mappedBy = "idPropuesta", cascade = { CascadeType.ALL })
+	private Set<Propuesta> propuestas;
 
 	public Cliente() {
 
@@ -85,6 +99,14 @@ public class Cliente {
 
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
+	}
+
+	public Set<Vehiculo> getVehiculos() {
+		return vehiculos;
+	}
+
+	public void setVehiculos(Set<Vehiculo> vehiculos) {
+		this.vehiculos = vehiculos;
 	}
 
 	@Override

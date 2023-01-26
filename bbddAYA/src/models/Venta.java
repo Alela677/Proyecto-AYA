@@ -1,40 +1,69 @@
 package models;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Venta")
-public class Venta {
+public class Venta implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Column
 	private String fechaVenta;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "vendedor")
 	private Empleados empleado;
-	@Column
-	private String nombreEmpleado;
-	@OneToOne
+
+	@OneToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "vehiculo")
 	private Vehiculo vehiculo;
+
+	@Column
+	private String nombreEmpleado;
 	@Column
 	private String marcaVehiculo;
 	@Column
 	private String modeloVehiculo;
 	@Column
 	private double precio;
+	@Column
+	private String nombreCliente;
 
 	public Venta() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Venta(int id, String fechaVenta, String nombreEmpleado, String marcaVehiculo, String modeloVehiculo,
+			double precio, String nombreCliente) {
+		super();
+		this.id = id;
+		this.fechaVenta = fechaVenta;
+		this.nombreEmpleado = nombreEmpleado;
+		this.marcaVehiculo = marcaVehiculo;
+		this.modeloVehiculo = modeloVehiculo;
+		this.precio = precio;
+		this.nombreCliente = nombreCliente;
+	}
+
+	public String getNombreCliente() {
+		return nombreCliente;
+	}
+
+	public void setNombreCliente(String nombreCliente) {
+		this.nombreCliente = nombreCliente;
 	}
 
 	public int getId() {

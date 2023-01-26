@@ -1,17 +1,20 @@
 package models;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Reparacion")
-public class Reparacion {
+public class Reparacion implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,8 +26,8 @@ public class Reparacion {
 	@Column
 	private double coste;
 
-	@OneToOne
-	@JoinColumn
+	@ManyToOne()
+	@JoinColumn(name = "empleado")
 	private Empleados empleado;
 
 	@OneToOne
@@ -38,14 +41,11 @@ public class Reparacion {
 
 	}
 
-	public Reparacion(int idReparacion, String pieza, double coste, Empleados empleado, Vehiculo vehiculo,
-			String fecha) {
+	public Reparacion(int idReparacion, String pieza, double coste, String fecha) {
 		super();
 		this.idReparacion = idReparacion;
 		this.pieza = pieza;
 		this.coste = coste;
-		this.empleado = empleado;
-		this.vehiculo = vehiculo;
 		this.fecha = fecha;
 	}
 
@@ -55,6 +55,22 @@ public class Reparacion {
 
 	public void setIdReparacion(int idReparacion) {
 		this.idReparacion = idReparacion;
+	}
+
+	public String getPieza() {
+		return pieza;
+	}
+
+	public void setPieza(String pieza) {
+		this.pieza = pieza;
+	}
+
+	public double getCoste() {
+		return coste;
+	}
+
+	public void setCoste(double coste) {
+		this.coste = coste;
 	}
 
 	public Empleados getEmpleado() {
@@ -73,10 +89,18 @@ public class Reparacion {
 		this.vehiculo = vehiculo;
 	}
 
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
 	@Override
 	public String toString() {
-		return "Reparacion [idReparacion=" + idReparacion + ", pieza=" + pieza + ", coste=" + coste + ", empleado="
-				+ empleado + ", vehiculo=" + vehiculo + ", fecha=" + fecha + "]";
+		return "Reparacion [idReparacion=" + idReparacion + ", pieza=" + pieza + ", coste=" + coste + ", fecha=" + fecha
+				+ "]";
 	}
 
 }

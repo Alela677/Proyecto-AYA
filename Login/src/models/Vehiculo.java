@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,9 +34,9 @@ public class Vehiculo implements Serializable {
 	@Column(name = "imagen")
 	private String imagen;
 
-	public  Vehiculo() {		
+	public Vehiculo() {
 	}
-	
+
 	public Vehiculo(String marca, String modelo, String color, int precio, int stock, String img) {
 		super();
 

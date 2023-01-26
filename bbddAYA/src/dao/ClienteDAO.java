@@ -35,12 +35,12 @@ public class ClienteDAO<T> extends ComunesDAO<T> implements ClienteI {
 	}
 
 	@Override
-	public Cliente buscarPorApellidosONombre(String apellido, String nombre) {
+	public Cliente buscarPorApellidosONombre(String valor) {
 		if (!sesion.beginTransaction().isActive()) {
 			sesion.beginTransaction();
 		}
 		return (Cliente) sesion
-				.createQuery("FROM Clientes c WHERE c.nombre = '" + nombre + "' OR c.apellidos LIKE '" + apellido + "'")
+				.createQuery("FROM Clientes c WHERE c.nombre = '" + valor + "' OR c.apellidos LIKE '%" + valor + "%'")
 				.uniqueResult();
 	}
 

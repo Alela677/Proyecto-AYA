@@ -8,7 +8,7 @@ public interface EmpleadosI {
 
 	public List<Empleados> EmpleadoTipo(String tipo);
 
-	public List<Empleados> consultarNombreOApellidos(String nombre, String apellidos);
+	public List<Empleados> consultarNombreOApellidos(String valor);
 
 	Empleados buscarUnEmpleadoPorColumna(String columna, String valor);
 

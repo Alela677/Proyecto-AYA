@@ -1,6 +1,7 @@
 package models;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,7 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -36,9 +40,16 @@ public class Vehiculo implements Serializable {
 	@Column
 	private String imagen;
 
-	@OneToOne(cascade = { CascadeType.ALL })
+	@Column
+	private int stock;
+
+	@ManyToOne()
 	@JoinColumn(name = "concesionario")
 	private Concesionario concesionario;
+
+	@ManyToOne
+	@PrimaryKeyJoinColumn
+	private Cliente cliente;
 
 	public Vehiculo() {
 	}
@@ -55,12 +66,12 @@ public class Vehiculo implements Serializable {
 
 	}
 
-	public String getImagen() {
-		return imagen;
+	public int getId() {
+		return id;
 	}
 
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getMarca() {
@@ -91,12 +102,36 @@ public class Vehiculo implements Serializable {
 		return precio;
 	}
 
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
 	public Concesionario getConcesionario() {
 		return concesionario;
 	}
 
 	public void setConcesionario(Concesionario concesionario) {
 		this.concesionario = concesionario;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override

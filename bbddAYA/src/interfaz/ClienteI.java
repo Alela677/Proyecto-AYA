@@ -10,7 +10,7 @@ public interface ClienteI {
 
 	Cliente buscarPorDni(String dni);
 
-	Cliente buscarPorApellidosONombre(String apellido, String nombre);
+	Cliente buscarPorApellidosONombre(String valor);
 
 	Cliente buscarPorTelefono(int telefono);
 }

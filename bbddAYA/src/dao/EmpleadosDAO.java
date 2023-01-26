@@ -29,13 +29,13 @@ public class EmpleadosDAO<T> extends ComunesDAO<T> implements EmpleadosI {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Empleados> consultarNombreOApellidos(String nombre, String apellidos) {
+	public List<Empleados> consultarNombreOApellidos(String valor) {
 		if (!sesion.beginTransaction().isActive()) {
 			sesion.beginTransaction();
 		}
 
 		return sesion
-				.createQuery("FROM Empleados e WHERE e.nombre = '" + nombre + " OR e.apellidos = '" + apellidos + "''")
+				.createQuery("FROM Empleados e WHERE e.nombre = '" + valor + " OR e.apellidos LIKE '%" + valor + "%''")
 				.list();
 	}
 
