@@ -5,66 +5,69 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import daos.VentasDAO;
+import org.hibernate.Session;
+
+import daos.VentaDAO;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import models.Vendedor;
-import models.Ventas;
+import models.HibernateUtil;
+import models.TablaVendedor;
+import models.Venta;
 
 public class ResumenVentasC implements Initializable {
 
-	private static List<Ventas> listaVentas = new ArrayList<Ventas>();
+	private Session sesion = HibernateUtil.getSession();
+	VentaDAO gestorVentas = new VentaDAO(sesion);
+
+	private static List<Venta> listaVentas = new ArrayList<Venta>();
 	private List<Object[]> vendedorList = new ArrayList<Object[]>();
-	private static ObservableList<Ventas> ventasLista = null;
-	private ObservableList<Vendedor> listaVendedor = null;
-	Integer IdVendedor = 2;
-	String NombreVendedor;
-	Long totalVendido;
+	private static ObservableList<Venta> ventasLista = null;
+	private ObservableList<TablaVendedor> listaVendedor = null;
 
 	@FXML
-	private TableView<Ventas> tablaVentas;
+	private TableView<Venta> tablaVentas;
 
 	@FXML
-	private TableColumn<Ventas, Integer> columnIdVenta;
+	private TableColumn<Venta, Integer> columnIdVenta;
 
 	@FXML
-	private TableColumn<Ventas, Integer> columnIdVehiculo;
+	private TableColumn<Venta, Integer> columnVehiculoMarca;
 
 	@FXML
-	private TableColumn<Ventas, Integer> columnIdEmpleado;
+	private TableColumn<Venta, Integer> columnVehiculoModelo;
 
 	@FXML
-	private TableColumn<Ventas, String> columnVendedor;
+	private TableColumn<Venta, String> columnVendedor;
 
 	@FXML
-	private TableColumn<Ventas, String> columCliente;
+	private TableColumn<Venta, String> columCliente;
 
 	@FXML
-	private TableColumn<Ventas, String> columnFechaCompra;
+	private TableColumn<Venta, String> columnFechaCompra;
 
 	@FXML
-	private TableView<Vendedor> tablaVendedor;
+	private TableView<TablaVendedor> tablaVendedor;
 
 	@FXML
-	private TableColumn<Vendedor, Integer> idVendedor;
+	private TableColumn<TablaVendedor, Integer> idVendedor;
 
 	@FXML
-	private TableColumn<Vendedor, String> nombreVendedor;
+	private TableColumn<TablaVendedor, String> nombreVendedor;
 
 	@FXML
-	private TableColumn<Vendedor, Long> totalVendedor;
+	private TableColumn<TablaVendedor, Long> totalVendedor;
 
 	@FXML
 	void ordenFecha(MouseEvent event) {
 		tablaVentas.getItems().clear();
-		listaVentas = VentasDAO.ordenarFecha();
+		listaVentas = gestorVentas.ordenarSoloFecha();
 		ventasLista = FXCollections.observableArrayList(listaVentas);
 		añadirFilasVentas(ventasLista);
 	}
@@ -72,7 +75,7 @@ public class ResumenVentasC implements Initializable {
 	@FXML
 	void ordenAño(MouseEvent event) {
 		tablaVentas.getItems().clear();
-		listaVentas = VentasDAO.ordenarAño();
+		listaVentas = gestorVentas.ordenarFechas("YEAR");
 		ventasLista = FXCollections.observableArrayList(listaVentas);
 		añadirFilasVentas(ventasLista);
 	}
@@ -80,7 +83,7 @@ public class ResumenVentasC implements Initializable {
 	@FXML
 	void ordenMes(MouseEvent event) {
 		tablaVentas.getItems().clear();
-		listaVentas = VentasDAO.ordenarMes();
+		listaVentas = gestorVentas.ordenarFechas("MONTH");
 		ventasLista = FXCollections.observableArrayList(listaVentas);
 		añadirFilasVentas(ventasLista);
 	}
@@ -88,7 +91,7 @@ public class ResumenVentasC implements Initializable {
 	@FXML
 	void ordenNombreCliente(MouseEvent event) {
 		tablaVentas.getItems().clear();
-		listaVentas = VentasDAO.ordenarCampos("nombreCliente");
+		listaVentas = gestorVentas.ordenarPorCampos("nombreCliente");
 		ventasLista = FXCollections.observableArrayList(listaVentas);
 		añadirFilasVentas(ventasLista);
 	}
@@ -96,15 +99,7 @@ public class ResumenVentasC implements Initializable {
 	@FXML
 	void ordenAlfabetico(MouseEvent event) {
 		tablaVentas.getItems().clear();
-		listaVentas = VentasDAO.ordenarCampos("nombreEmpleado");
-		ventasLista = FXCollections.observableArrayList(listaVentas);
-		añadirFilasVentas(ventasLista);
-	}
-
-	@FXML
-	void ordenEmpleado(MouseEvent event) {
-		tablaVentas.getItems().clear();
-		listaVentas = VentasDAO.ordenarCampos("empleado");
+		listaVentas = gestorVentas.ordenarPorCampos("nombreEmpleado");
 		ventasLista = FXCollections.observableArrayList(listaVentas);
 		añadirFilasVentas(ventasLista);
 	}
@@ -112,15 +107,7 @@ public class ResumenVentasC implements Initializable {
 	@FXML
 	void ordenVenta(MouseEvent event) {
 		tablaVentas.getItems().clear();
-		listaVentas = VentasDAO.ordenarCampos("id");
-		ventasLista = FXCollections.observableArrayList(listaVentas);
-		añadirFilasVentas(ventasLista);
-	}
-
-	@FXML
-	void ordenarIdVehiculo(MouseEvent event) {
-		tablaVentas.getItems().clear();
-		listaVentas = VentasDAO.ordenarCampos("vehiculo");
+		listaVentas = gestorVentas.ordenarPorCampos("id");
 		ventasLista = FXCollections.observableArrayList(listaVentas);
 		añadirFilasVentas(ventasLista);
 	}
@@ -128,7 +115,7 @@ public class ResumenVentasC implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		listaVentas = VentasDAO.consultarVentas();
+		listaVentas = gestorVentas.searchAll("Venta");
 		ventasLista = FXCollections.observableArrayList(listaVentas);
 		añadirFilasVendedor();
 		añadirFilasVentas(ventasLista);
@@ -138,11 +125,11 @@ public class ResumenVentasC implements Initializable {
 
 	private void añadirFilasVendedor() {
 
-		vendedorList = VentasDAO.consultaVendedor();
+		vendedorList = gestorVentas.consultarRankingVendedor();
 		listaVendedor = FXCollections.observableArrayList();
 
 		for (Object[] vendedor : vendedorList) {
-			listaVendedor.add(new Vendedor((int) vendedor[0], (String) vendedor[1], (long) vendedor[2]));
+			listaVendedor.add(new TablaVendedor((int) vendedor[0], (String) vendedor[1], (long) vendedor[2]));
 
 		}
 
@@ -152,11 +139,11 @@ public class ResumenVentasC implements Initializable {
 		tablaVendedor.setItems(listaVendedor);
 	}
 
-	private void añadirFilasVentas(ObservableList<Ventas> ventasLista) {
+	private void añadirFilasVentas(ObservableList<Venta> ventasLista) {
 
 		columnIdVenta.setCellValueFactory(new PropertyValueFactory<>("id"));
-		columnIdVehiculo.setCellValueFactory(new PropertyValueFactory<>("vehiculo"));
-		columnIdEmpleado.setCellValueFactory(new PropertyValueFactory<>("empleado"));
+		columnVehiculoMarca.setCellValueFactory(new PropertyValueFactory<>("marcaVehiculo"));
+		columnVehiculoModelo.setCellValueFactory(new PropertyValueFactory<>("modeloVehiculo"));
 		columnVendedor.setCellValueFactory(new PropertyValueFactory<>("nombreEmpleado"));
 		columCliente.setCellValueFactory(new PropertyValueFactory<>("nombreCliente"));
 		columnFechaCompra.setCellValueFactory(new PropertyValueFactory<>("fechaVenta"));
@@ -164,10 +151,11 @@ public class ResumenVentasC implements Initializable {
 	}
 
 	private void columnasResizable(boolean opc) {
+
 		columCliente.setResizable(opc);
 		columnFechaCompra.setResizable(opc);
-		columnIdEmpleado.setResizable(opc);
-		columnIdVehiculo.setResizable(opc);
+		columnVehiculoModelo.setResizable(opc);
+		columnVehiculoMarca.setResizable(opc);
 		columnIdVenta.setResizable(opc);
 		columnVendedor.setResizable(opc);
 		idVendedor.setResizable(opc);
@@ -176,8 +164,4 @@ public class ResumenVentasC implements Initializable {
 
 	}
 
-	private static void limpiarListas() {
-		listaVentas.clear();
-		ventasLista.clear();
-	}
 }

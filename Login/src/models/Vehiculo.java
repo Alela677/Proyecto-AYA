@@ -1,17 +1,23 @@
 package models;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Vehiculos")
+@Table(name = "Vehiculo")
 public class Vehiculo implements Serializable {
 
 	/**
@@ -21,39 +27,48 @@ public class Vehiculo implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@Column(name = "marca")
+	@Column
 	private String marca;
-	@Column(name = "modelo")
+	@Column(unique = true)
 	private String modelo;
-	@Column(name = "color")
+	@Column
 	private String color;
-	@Column(name = "precio")
-	private int precio;
-	@Column(name = "stock")
-	private int stock;
-	@Column(name = "imagen")
+	@Column
+	private double precio;
+	@Column
+	private String matricula;
+	@Column
 	private String imagen;
+
+	@ManyToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "concesionario")
+	private Concesionario concesionario;
+
+	@ManyToOne
+	@PrimaryKeyJoinColumn
+	private Cliente cliente;
 
 	public Vehiculo() {
 	}
 
-	public Vehiculo(String marca, String modelo, String color, int precio, int stock, String img) {
+	public Vehiculo(String marca, String modelo, String color, double precio, String matricula, String imagen) {
 		super();
 
 		this.marca = marca;
 		this.modelo = modelo;
 		this.color = color;
 		this.precio = precio;
-		this.stock = stock;
-		this.imagen = img;
-	}
-
-	public String getImagen() {
-		return imagen;
-	}
-
-	public void setImagen(String imagen) {
+		this.matricula = matricula;
 		this.imagen = imagen;
+
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getMarca() {
@@ -84,22 +99,51 @@ public class Vehiculo implements Serializable {
 		return precio;
 	}
 
-	public void setPrecio(int precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 
-	public int getStock() {
-		return stock;
+	public String getMatricula() {
+		return matricula;
 	}
 
-	public void setStock(int stock) {
-		this.stock = stock;
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	public Concesionario getConcesionario() {
+		return concesionario;
+	}
+
+	public void setConcesionario(Concesionario concesionario) {
+		this.concesionario = concesionario;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	@Override
 	public String toString() {
-		return "Vehiculo [marca=" + marca + ", modelo=" + modelo + ", color=" + color + ", precio=" + precio
-				+ ", stock=" + stock + ", imagen=" + imagen + "]";
+		return "Vehiculo [id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", color=" + color + ", precio="
+				+ precio + ", matricula=" + matricula + ", imagen=" + imagen + "]";
 	}
 
+	
 }

@@ -1,13 +1,18 @@
 package controllers;
 
-import daos.VehiculosDAO;
+import org.hibernate.Session;
+
+import daos.VehiculoDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import models.HibernateUtil;
 import models.Vehiculo;
 
 public class VehiculosC {
+	Session sesion = HibernateUtil.getSession();
+	VehiculoDAO gestorVehiculo = new VehiculoDAO(sesion);
 
 	@FXML
 	private ImageView vehiculoImagen;
@@ -33,7 +38,7 @@ public class VehiculosC {
 		vehiucloModelo.setText(vehiculo.getModelo());
 		vehiculoColor.setText(vehiculo.getColor());
 		vehiculoPrecio.setText(String.valueOf(vehiculo.getPrecio()));
-		vehiculoStock.setText(String.valueOf(VehiculosDAO.stock(vehiculo.getModelo())));
+		vehiculoStock.setText(String.valueOf(gestorVehiculo.stockVehiculos(vehiculo.getModelo())));
 		Image imagen = new Image(getClass().getResourceAsStream("/images/" + vehiculo.getImagen()));
 		vehiculoImagen.setImage(imagen);
 

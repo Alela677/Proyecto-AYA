@@ -7,8 +7,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+import org.hibernate.Session;
+
 import daos.EmpleadosDAO;
-import daos.VehiculosDAO;
+import daos.VehiculoDAO;
+import daos.VentaDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,10 +23,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import models.HibernateUtil;
 import models.Vehiculo;
 import utils.GridpanelVehiculos;
 
 public class StockC implements Initializable {
+
+	private Session sesion = HibernateUtil.getSession();
+	VehiculoDAO gestorVehiculo = new VehiculoDAO(sesion);
 
 	@SuppressWarnings("unused")
 	private VehiculosC controlador;
@@ -59,7 +66,7 @@ public class StockC implements Initializable {
 	@FXML
 	void buscarPorColor(ActionEvent event) throws IOException {
 		limpiarLista();
-		vehiculos = VehiculosDAO.filtrarVehiculos("color", comboColor.getValue());
+		vehiculos = gestorVehiculo.listaPorColumnaYValorStock("color", comboColor.getValue());
 		paneles = grid.crearPaneles(vehiculos);
 		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 		borderPaneStock.setCenter(nuevoGrid);
@@ -69,7 +76,7 @@ public class StockC implements Initializable {
 	@FXML
 	void buscarPorMarca(ActionEvent event) throws IOException {
 		limpiarLista();
-		vehiculos = VehiculosDAO.filtrarVehiculos("marca", comboMarca.getValue());
+		vehiculos = gestorVehiculo.listaPorColumnaYValorStock("marca", comboMarca.getValue());
 		paneles = grid.crearPaneles(vehiculos);
 		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 		borderPaneStock.setCenter(nuevoGrid);
@@ -78,7 +85,7 @@ public class StockC implements Initializable {
 	@FXML
 	void buscarporModelo(ActionEvent event) throws IOException {
 		limpiarLista();
-		vehiculos = VehiculosDAO.filtrarVehiculos("modelo", comboModelo.getValue());
+		vehiculos = gestorVehiculo.listaPorColumnaYValorStock("modelo", comboModelo.getValue());
 		paneles = grid.crearPaneles(vehiculos);
 		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 		borderPaneStock.setCenter(nuevoGrid);
@@ -90,7 +97,7 @@ public class StockC implements Initializable {
 		limpiarLista();
 
 		// Repetimos el proceso cuando pulsamos el boton
-		vehiculos = VehiculosDAO.entreVeinteCincuenta();
+		vehiculos = gestorVehiculo.consultarPrecioEntre(20000, 50000);
 		paneles = grid.crearPaneles(vehiculos);
 		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 		borderPaneStock.setCenter(nuevoGrid);
@@ -103,7 +110,7 @@ public class StockC implements Initializable {
 
 		// Repetimos el proceso cuando pulsamos el boton
 
-		vehiculos = VehiculosDAO.mayorCincuenta();
+		vehiculos = gestorVehiculo.consultarPrecio(">", 50000);
 		paneles = grid.crearPaneles(vehiculos);
 		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 		borderPaneStock.setCenter(nuevoGrid);
@@ -115,30 +122,30 @@ public class StockC implements Initializable {
 		limpiarLista();
 		// Repetimos el proceso cuando pulsamos el boton
 
-		vehiculos = VehiculosDAO.menorVeinte();
+		vehiculos = gestorVehiculo.consultarPrecio("<", 20000);
 		paneles = grid.crearPaneles(vehiculos);
 		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 		borderPaneStock.setCenter(nuevoGrid);
 	}
 
 	private void rellenarCamposMarca() {
-		List<String> cargos = VehiculosDAO.vehiculosRellenarCampos("marca");
+		List<String> cargos = gestorVehiculo.traerValoresColumnas("marca");
 		cargos = cargos.stream().distinct().collect(Collectors.toList());
 		ObservableList<String> items = FXCollections.observableArrayList(cargos);
 		comboMarca.setItems(items);
 	}
 
 	private void rellenarCamposModelo() {
-		List<String> cargos = VehiculosDAO.vehiculosRellenarCampos("modelo");
-		cargos = cargos.stream().distinct().collect(Collectors.toList());
-		ObservableList<String> items = FXCollections.observableArrayList(cargos);
+		List<String> modelo = gestorVehiculo.traerValoresColumnas("modelo");
+		modelo = modelo.stream().distinct().collect(Collectors.toList());
+		ObservableList<String> items = FXCollections.observableArrayList(modelo);
 		comboModelo.setItems(items);
 	}
 
 	private void rellenarCamposColor() {
-		List<String> cargos = VehiculosDAO.vehiculosRellenarCampos("color");
-		cargos = cargos.stream().distinct().collect(Collectors.toList());
-		ObservableList<String> items = FXCollections.observableArrayList(cargos);
+		List<String> colores = gestorVehiculo.traerValoresColumnas("color");
+		colores = colores.stream().distinct().collect(Collectors.toList());
+		ObservableList<String> items = FXCollections.observableArrayList(colores);
 		comboColor.setItems(items);
 	}
 
@@ -160,7 +167,7 @@ public class StockC implements Initializable {
 		int fila = 0;
 
 		try {
-			vehiculos = VehiculosDAO.consultaVehiculos();
+			vehiculos = gestorVehiculo.traerVehiculosSinMatricula();
 			paneles = grid.crearPaneles(vehiculos);
 			nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 			borderPaneStock.setCenter(nuevoGrid);

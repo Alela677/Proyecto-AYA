@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.hibernate.Session;
+
 import daos.EmpleadosDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,8 +24,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import models.Empleados;
+import models.HibernateUtil;
 
 public class EmpleadoC implements Initializable {
+	
+	private Session sesion = HibernateUtil.getSession();
+	EmpleadosDAO gestorEmpleados = new EmpleadosDAO(sesion);
+
 	private Empleados empleado = null;
 
 	@FXML
@@ -80,7 +87,7 @@ public class EmpleadoC implements Initializable {
 			empleado.setDni(txtDNI.getText());
 			empleado.setFechaAlta(txtFechaAlta.getText());
 
-			EmpleadosDAO.actualizarEmpleado(empleado);
+			gestorEmpleados.update(empleado);
 
 			buttonEditar.setText("Editar");
 			txtNombre.setEditable(false);
@@ -96,7 +103,7 @@ public class EmpleadoC implements Initializable {
 
 	@FXML
 	void eliminaEmpleados(ActionEvent event) throws IOException {
-		EmpleadosDAO.eliminaEmpleado(empleado);
+		gestorEmpleados.delete(empleado);
 		actualizarPagina();
 
 	}

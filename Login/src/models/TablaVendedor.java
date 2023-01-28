@@ -1,12 +1,12 @@
 package models;
 
-public class Vendedor {
+public class TablaVendedor {
 
 	private int id;
 	private String nombre;
 	private long total;
 
-	public Vendedor(int id, String nombre, long total) {
+	public TablaVendedor(int id, String nombre, long total) {
 		super();
 		this.id = id;
 		this.nombre = nombre;

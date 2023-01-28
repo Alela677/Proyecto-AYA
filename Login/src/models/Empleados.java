@@ -1,12 +1,17 @@
 package models;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,7 +29,7 @@ public class Empleados implements Serializable {
 	private String nombre;
 	@Column(name = "apellidos")
 	private String apellidos;
-	@Column(name = "dni")
+	@Column(name = "dni", unique = true)
 	private String dni;
 	@Column(name = "departamento")
 	private String departamento;
@@ -32,20 +37,31 @@ public class Empleados implements Serializable {
 	private String cargo;
 	@Column(name = "fechaAlta")
 	private String fechaAlta;
-	@Column(name = "fechaBaja")
-	private String fechaBaja;
+
 	@Column(name = "imagen")
 	private String imagenEmpleado;
 	@Column(name = "contraseña")
 	private String contraseña;
+
+	@ManyToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "concesionario")
+	private Concesionario concesionario;
+
+	@OneToMany(mappedBy = "id", cascade = { CascadeType.ALL })
+	private Set<Venta> ventas;
+
+	@OneToMany(mappedBy = "idReparacion", cascade = { CascadeType.ALL })
+	private Set<Reparacion> reparaciones;
+
+	@OneToMany(mappedBy = "idPropuesta", cascade = { CascadeType.ALL })
+	private Set<Propuesta> propuestas;
 
 	public Empleados() {
 
 	}
 
 	public Empleados(String nombre, String apellidos, String dni, String departamento, String cargo, String fechaAlta,
-			String fechaBaja, String imagenEmpleado, String contraseña) {
-
+			String imagenEmpleado, String contraseña) {
 		super();
 
 		this.nombre = nombre;
@@ -54,17 +70,8 @@ public class Empleados implements Serializable {
 		this.departamento = departamento;
 		this.cargo = cargo;
 		this.fechaAlta = fechaAlta;
-		this.fechaBaja = fechaBaja;
 		this.imagenEmpleado = imagenEmpleado;
 		this.contraseña = contraseña;
-	}
-
-	public String getImagenEmpleado() {
-		return imagenEmpleado;
-	}
-
-	public void setImagenEmpleado(String imagenEmpleado) {
-		this.imagenEmpleado = imagenEmpleado;
 	}
 
 	public int getId() {
@@ -123,16 +130,12 @@ public class Empleados implements Serializable {
 		this.fechaAlta = fechaAlta;
 	}
 
-	public String getFechaBaja() {
-		return fechaBaja;
+	public String getImagenEmpleado() {
+		return imagenEmpleado;
 	}
 
-	public void setFechaBaja(String fechaBaja) {
-		this.fechaBaja = fechaBaja;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setImagenEmpleado(String imagenEmpleado) {
+		this.imagenEmpleado = imagenEmpleado;
 	}
 
 	public String getContraseña() {
@@ -143,11 +146,47 @@ public class Empleados implements Serializable {
 		this.contraseña = contraseña;
 	}
 
+	public Concesionario getConcesionario() {
+		return concesionario;
+	}
+
+	public void setConcesionario(Concesionario concesionario) {
+		this.concesionario = concesionario;
+	}
+
+	public Set<Venta> getVentas() {
+		return ventas;
+	}
+
+	public void setVentas(Set<Venta> ventas) {
+		this.ventas = ventas;
+	}
+
+	public Set<Reparacion> getReparaciones() {
+		return reparaciones;
+	}
+
+	public void setReparaciones(Set<Reparacion> reparaciones) {
+		this.reparaciones = reparaciones;
+	}
+
+	public Set<Propuesta> getPropuestas() {
+		return propuestas;
+	}
+
+	public void setPropuestas(Set<Propuesta> propuestas) {
+		this.propuestas = propuestas;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
 		return "Empleados [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni
-				+ ", departamento=" + departamento + ", cargo=" + cargo + ", fechaAlta=" + fechaAlta + ", fechaBaja="
-				+ fechaBaja + ", imagenEmpleado=" + imagenEmpleado + ", contraseña=" + contraseña + "]";
+				+ ", departamento=" + departamento + ", cargo=" + cargo + ", fechaAlta=" + fechaAlta
+				+ ", imagenEmpleado=" + imagenEmpleado + ", contraseña=" + contraseña + "]";
 	}
 
 }

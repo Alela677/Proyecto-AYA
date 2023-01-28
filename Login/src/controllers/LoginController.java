@@ -5,10 +5,11 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-
 import java.util.ResourceBundle;
 
-import daos.UsuariosDAO;
+import org.hibernate.Session;
+
+import daos.EmpleadosDAO;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,9 +23,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import models.Usuarios;
+import models.Empleados;
+import models.HibernateUtil;
+import utils.HashPassword;
 
 public class LoginController implements Initializable {
+	private Session sesion = HibernateUtil.getSession();
+	EmpleadosDAO gestorEmpleados = new EmpleadosDAO(sesion);
 
 	public static BorderPane root;
 	private Stage stage;
@@ -50,7 +55,7 @@ public class LoginController implements Initializable {
 	@FXML
 	private TextField txtUser;
 
-	private Usuarios comprobar;
+	private Empleados comprobar;
 
 	@FXML
 	void logeo(MouseEvent event) throws IOException {
@@ -60,11 +65,14 @@ public class LoginController implements Initializable {
 		boolean registrado = false;
 
 		try {
-			comprobar = UsuariosDAO.consultarUsuarios(nombre, passwd);
+			comprobar = gestorEmpleados.empleadoDepartamentoLogin("JEFE", nombre, passwd);
+			if (comprobar.getNombre().equalsIgnoreCase(nombre)
+					&& comprobar.getContraseña().equals(HashPassword.convertirSHA256(passwd))) {
 
-			if (comprobar.getNombre().equals(nombre) && comprobar.getPassword().equals(passwd)) {
 				registrado = true;
+
 			}
+
 		} catch (NullPointerException e) {
 			alertaError();
 		}
@@ -157,8 +165,8 @@ public class LoginController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		txtUser.setText("Luis");
-		txtPassword.setText("1234");
+		txtUser.setText("FRANCISCO");
+		txtPassword.setText("passFrancisco");
 
 	}
 

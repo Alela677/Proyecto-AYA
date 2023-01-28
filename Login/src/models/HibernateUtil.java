@@ -1,4 +1,4 @@
-package daos;
+package models;
 
 
 import org.hibernate.Session;
@@ -8,7 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.context.internal.ThreadLocalSessionContext;
 
-public class HibernateUtil {
+public class HibernateUtil  {
 
 	private static SessionFactory sessionFactory;
 	private static Session session;

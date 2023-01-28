@@ -20,8 +20,8 @@ public class MecanicosC {
 	private Pane paneGanancia;
 
 	@FXML
-	void vistaGanancias(MouseEvent event) {
-
+	void vistaGanancias(MouseEvent event) throws IOException {
+		escenaGananciaTotal();
 	}
 
 	@FXML
@@ -33,5 +33,12 @@ public class MecanicosC {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SceneReparaciones.fxml"));
 		AnchorPane root = loader.load();
 		LoginController.root.setCenter(root);
+	}
+
+	private void escenaGananciaTotal() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SceneGanaciaTotal.fxml"));
+		AnchorPane root = loader.load();
+		LoginController.root.setCenter(root);
+
 	}
 }

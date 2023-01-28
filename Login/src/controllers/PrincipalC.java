@@ -70,6 +70,8 @@ public class PrincipalC {
 		this.controLogin = loginController;
 		nombreUsuario.setText(usuario);
 		this.borderPane = border;
+		stage.getIcons().add(new Image("images/logo.PNG"));
+		stage.setTitle("AYA Vehiculos");
 		escenaInicio();
 	}
 
@@ -115,18 +117,19 @@ public class PrincipalC {
 	void escenaResumenVentas(ActionEvent event) throws IOException {
 		escenaResumenVentas();
 	}
-	
+
 	@FXML
-    void verGanancias(ActionEvent event) {
+	void verGanancias(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SceneGanaciaTotal.fxml"));
+		AnchorPane root = loader.load();
+		borderPane.setCenter(root);
+	}
 
-    }
-
-    @FXML
+	@FXML
 	void verReparaciones(ActionEvent event) throws IOException {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SceneReparaciones.fxml"));
-    	AnchorPane root = loader.load();
-    	borderPane.setCenter(root);
-    }
-	
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SceneReparaciones.fxml"));
+		AnchorPane root = loader.load();
+		borderPane.setCenter(root);
+	}
 
 }

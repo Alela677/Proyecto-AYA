@@ -25,7 +25,7 @@
                         <Image url="@../images/logo.PNG" />
                      </image>
                   </ImageView>
-                  <Label alignment="TOP_RIGHT" layoutX="794.0" layoutY="8.0" prefHeight="57.0" prefWidth="364.0" text="Jefe Concesionario" textFill="WHITE">
+                  <Label alignment="TOP_RIGHT" layoutX="741.0" layoutY="8.0" prefHeight="57.0" prefWidth="417.0" text="Director Concesionario" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
@@ -41,7 +41,7 @@
                         <DropShadow />
                      </effect>
                   </Label>
-                  <Label fx:id="nombreUsuario" alignment="CENTER_RIGHT" layoutX="907.0" layoutY="57.0" prefHeight="26.0" prefWidth="247.0" text="Label" textFill="WHITE">
+                  <Label fx:id="nombreUsuario" alignment="CENTER_RIGHT" layoutX="907.0" layoutY="65.0" prefHeight="26.0" prefWidth="247.0" text="Label" textFill="WHITE">
                      <font>
                         <Font name="Liberation Sans" size="24.0" />
                      </font>

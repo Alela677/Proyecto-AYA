@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+import org.hibernate.Session;
+
 import daos.EmpleadosDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,9 +26,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import models.Empleados;
+import models.HibernateUtil;
 import utils.GridpanelEmpleados;
 
 public class VerEmpleadosC implements Initializable {
+
+	Session sesion = HibernateUtil.getSession();
+	EmpleadosDAO gestorEmpleados = new EmpleadosDAO(sesion);
+
 	private GridpanelEmpleados grid = new GridpanelEmpleados();
 
 	static List<Empleados> listaEmpleados = new ArrayList<Empleados>();
@@ -65,7 +72,7 @@ public class VerEmpleadosC implements Initializable {
 		int columna = 0;
 
 		try {
-			listaEmpleados = EmpleadosDAO.consultarEmpleados();
+			listaEmpleados = gestorEmpleados.searchAll("Empleados");
 			paneles = grid.crearPaneles(listaEmpleados);
 			nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 			borderPaneEmpleados.setCenter(nuevoGrid);
@@ -93,14 +100,14 @@ public class VerEmpleadosC implements Initializable {
 	}
 
 	private void rellenarCamposDepartamento() {
-		List<String> departamentos = EmpleadosDAO.consultarComboBox("departamento");
+		List<String> departamentos = gestorEmpleados.traerValoresColumnas("departamento");
 		departamentos = departamentos.stream().distinct().collect(Collectors.toList());
 		ObservableList<String> items = FXCollections.observableArrayList(departamentos);
 		comboBoxDepartamentos.setItems(items);
 	}
 
 	private void rellenarCamposCargo() {
-		List<String> cargos = EmpleadosDAO.consultarComboBox("cargo");
+		List<String> cargos = gestorEmpleados.traerValoresColumnas("cargo");
 		cargos = cargos.stream().distinct().collect(Collectors.toList());
 		ObservableList<String> items = FXCollections.observableArrayList(cargos);
 		comboBoxCargo.setItems(items);
@@ -109,7 +116,7 @@ public class VerEmpleadosC implements Initializable {
 	@FXML
 	void buscarEmpleadoNombre(MouseEvent event) throws IOException {
 		limpiarListas();
-		listaEmpleados = EmpleadosDAO.consultarNombre(txtBuscarNombre.getText());
+		listaEmpleados = gestorEmpleados.consultarNombreOApellidos(txtBuscarNombre.getText().toUpperCase());
 		paneles = grid.crearPaneles(listaEmpleados);
 		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 		borderPaneEmpleados.setCenter(nuevoGrid);
@@ -118,7 +125,7 @@ public class VerEmpleadosC implements Initializable {
 	@FXML
 	void buscarEmpleadoApellidos(MouseEvent event) throws IOException {
 		limpiarListas();
-		listaEmpleados = EmpleadosDAO.consultarApellido(txtApellidos.getText());
+		listaEmpleados = gestorEmpleados.consultarNombreOApellidos(txtApellidos.getText().toUpperCase());
 		paneles = grid.crearPaneles(listaEmpleados);
 		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 		borderPaneEmpleados.setCenter(nuevoGrid);
@@ -127,7 +134,8 @@ public class VerEmpleadosC implements Initializable {
 	@FXML
 	void filtrarPorDepartamento(ActionEvent event) throws IOException {
 		limpiarListas();
-		listaEmpleados = EmpleadosDAO.consultarFiltro("departamento", comboBoxDepartamentos.getValue());
+		listaEmpleados = gestorEmpleados.listaEmpleadosPorCulumnaYValor("departamento",
+				comboBoxDepartamentos.getValue());
 		paneles = grid.crearPaneles(listaEmpleados);
 		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 		borderPaneEmpleados.setCenter(nuevoGrid);
@@ -137,7 +145,7 @@ public class VerEmpleadosC implements Initializable {
 	@FXML
 	void filtrarCargo(ActionEvent event) throws IOException {
 		limpiarListas();
-		listaEmpleados = EmpleadosDAO.consultarFiltro("cargo", comboBoxCargo.getValue());
+		listaEmpleados = gestorEmpleados.listaEmpleadosPorCulumnaYValor("cargo", comboBoxCargo.getValue());
 		paneles = grid.crearPaneles(listaEmpleados);
 		nuevoGrid = grid.crearGridPane(columna, fila, paneles);
 		borderPaneEmpleados.setCenter(nuevoGrid);
@@ -147,7 +155,5 @@ public class VerEmpleadosC implements Initializable {
 		listaEmpleados.clear();
 		paneles.clear();
 	}
-
-	
 
 }

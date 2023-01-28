@@ -3,13 +3,14 @@ package controllers;
 import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
-
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import javax.swing.JFileChooser;
+
+import org.hibernate.Session;
 
 import daos.EmpleadosDAO;
 import javafx.collections.FXCollections;
@@ -27,9 +28,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import models.Empleados;
+import models.HibernateUtil;
 import utils.GuardarImagen;
+import utils.HashPassword;
 
 public class CrearEmpleadoC implements Initializable {
+
+	private Session sesion = HibernateUtil.getSession();
+	EmpleadosDAO gestorEmpleados = new EmpleadosDAO(sesion);
+
 	final FileChooser fileChooser = new FileChooser();
 
 	@FXML
@@ -113,22 +120,21 @@ public class CrearEmpleadoC implements Initializable {
 		if (imagen.isEmpty()) {
 			imagen = "user.jpeg";
 		}
-		Empleados nuevoEmpleado = new Empleados(nombre, apellidos, dni, departamento, cargo, fechaAlta, null, imagen,
-				contraseña);
+		Empleados nuevoEmpleado = new Empleados(nombre, apellidos, dni, departamento, cargo, fechaAlta, imagen,
+				HashPassword.convertirSHA256(contraseña));
 
-		EmpleadosDAO.crearEmpleado(nuevoEmpleado);
+		gestorEmpleados.insert(nuevoEmpleado);
 		actualizarPagina();
 	}
 
 	private void rellenarCamposCargo() {
-		List<String> cargos = EmpleadosDAO.consultarComboBox("cargo");
+		List<String> cargos = gestorEmpleados.traerValoresColumnasCargos();
 		cargos = cargos.stream().distinct().collect(Collectors.toList());
 		ObservableList<String> items = FXCollections.observableArrayList(cargos);
 		comboCargo.setItems(items);
 	}
 
 	private void rellenarCamposDepartamento() {
-		
 		ObservableList<String> items = FXCollections.observableArrayList();
 		items.add("Ventas");
 		items.add("Mecanico");
