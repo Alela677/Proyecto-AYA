@@ -18,6 +18,7 @@
 		<mapping class="models.Cliente" />
 		<mapping class="models.Concesionario" />
 		<mapping class="models.Reparacion" />
+		<mapping class="models.Especialidades" />
 
 	</session-factory>
 </hibernate-configuration>
